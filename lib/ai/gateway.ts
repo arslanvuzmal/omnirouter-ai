@@ -1,5 +1,3 @@
-import 'server-only';
-
 import { randomUUID } from 'node:crypto';
 
 import { prisma } from '@/lib/database/client';
@@ -68,8 +66,17 @@ export interface RunCompletionInput {
   requiredCapabilities?: Capability[];
   /** Fault injection for demonstrations. Only the demo provider honours these. */
   demoBehaviour?: DemoBehaviour;
-  /** Applies the injected fault to the first attempt only, so fallback succeeds. */
-  demoBehaviourFirstAttemptOnly?: boolean;
+  /**
+   * How widely the injected fault applies.
+   *
+   *  'all'             — every attempt fails; demonstrates terminal failure.
+   *  'first_attempt'   — only the opening call fails; demonstrates a same-target
+   *                      retry succeeding.
+   *  'first_candidate' — every attempt against the primary target fails, so the
+   *                      chain exhausts its retries and genuinely moves to a
+   *                      different model. This is what produces a real fallback.
+   */
+  demoBehaviourScope?: 'all' | 'first_attempt' | 'first_candidate';
   idempotencyKey?: string | null;
   source?: string;
 }
@@ -414,6 +421,7 @@ export async function runCompletion(
   };
 
   let invocationIndex = 0;
+  const primaryModelId = route.selected.modelId;
 
   const execution = await executeWithFallback({
     request: completionRequest,
@@ -425,12 +433,12 @@ export async function runCompletion(
     buildContext: (candidate, timeoutMs): ProviderContext => {
       const credential = credentialCache.get(candidate.connectionId) ?? {};
 
-      // When "first attempt only" is set, the injected fault applies to the
-      // opening attempt so the demonstration shows a real recovery rather than
-      // a chain where every target fails.
+      const scope = input.demoBehaviourScope ?? 'all';
       const applyFault =
-        input.demoBehaviour &&
-        (!input.demoBehaviourFirstAttemptOnly || invocationIndex === 0);
+        Boolean(input.demoBehaviour) &&
+        (scope === 'all' ||
+          (scope === 'first_attempt' && invocationIndex === 0) ||
+          (scope === 'first_candidate' && candidate.modelId === primaryModelId));
 
       return {
         apiKey: credential.apiKey,
