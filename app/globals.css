@@ -1,0 +1,209 @@
+@import 'tailwindcss';
+
+/**
+ * OmniRouter design system.
+ *
+ * A deep charcoal base with a restrained cyan primary and a muted violet
+ * secondary. Accent use is deliberately sparse: colour carries meaning
+ * (success, warning, failure, fallback) rather than decoration, so a chart or a
+ * trace can be read at a glance.
+ */
+
+@theme {
+  /* Surfaces — a blue-black ramp rather than neutral grey. */
+  --color-base-950: #070a0f;
+  --color-base-900: #0b0f16;
+  --color-base-850: #10151e;
+  --color-base-800: #161c27;
+  --color-base-700: #1e2532;
+  --color-base-600: #2a3341;
+  --color-base-500: #3a4557;
+
+  /* Text */
+  --color-ink-50: #f5f8fc;
+  --color-ink-200: #c3cddb;
+  --color-ink-400: #8b98ab;
+  --color-ink-600: #5c6778;
+
+  /* Primary — cyan, used for selection and primary action only. */
+  --color-primary-300: #7ee3f5;
+  --color-primary-400: #38cee8;
+  --color-primary-500: #12b3d1;
+  --color-primary-600: #0d8fa8;
+
+  /* Secondary — muted violet, used for policy and routing semantics. */
+  --color-accent-300: #b8a6f5;
+  --color-accent-400: #9179ea;
+  --color-accent-500: #7458d8;
+
+  /* Status */
+  --color-success-400: #34d399;
+  --color-success-600: #0f9b6c;
+  --color-warning-400: #fbbf24;
+  --color-warning-600: #b8860f;
+  --color-danger-400: #fb7185;
+  --color-danger-600: #be3455;
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-mono:
+    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+
+  --radius-panel: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+* {
+  border-color: var(--color-base-700);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-base-950);
+  color: var(--color-ink-200);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* A faint technical grid; strictly decorative and never behind body copy. */
+.surface-grid {
+  background-image:
+    linear-gradient(to right, rgba(58, 69, 87, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(58, 69, 87, 0.14) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.surface-glow {
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% -10%,
+      rgba(18, 179, 209, 0.14),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 45% at 85% 10%,
+      rgba(116, 88, 216, 0.1),
+      transparent 70%
+    );
+}
+
+/* --------------------------------------------------------------------------
+   Focus — visible and consistent, never removed
+   -------------------------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-400);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Skip link for keyboard users. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.625rem 1rem;
+  background: var(--color-base-800);
+  color: var(--color-ink-50);
+  border: 1px solid var(--color-primary-500);
+  border-radius: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Scrollbars
+   -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-base-600);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-base-500);
+}
+
+/* --------------------------------------------------------------------------
+   Motion — respect the user's preference
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.25s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   Recharts overrides — the library's defaults are too light for this palette
+   -------------------------------------------------------------------------- */
+
+.recharts-cartesian-grid line {
+  stroke: var(--color-base-700);
+}
+
+.recharts-text {
+  fill: var(--color-ink-400);
+  font-size: 11px;
+}
+
+.recharts-default-tooltip {
+  background-color: var(--color-base-800) !important;
+  border: 1px solid var(--color-base-600) !important;
+  border-radius: 0.5rem !important;
+}

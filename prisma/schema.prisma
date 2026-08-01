@@ -362,7 +362,6 @@ model ModelDefinition {
   connection ProviderConnection @relation(fields: [connectionId], references: [id], onDelete: Cascade)
   rules      RoutingRule[]
   attempts   RequestAttempt[]
-  usageDaily UsageDaily[]
 
   @@unique([connectionId, modelId])
   @@index([workspaceId, isAvailable])
@@ -616,33 +615,38 @@ model RequestAttempt {
 // Aggregates, quotas, audit
 // ---------------------------------------------------------------------------
 
+// Daily rollup at the environment grain.
+//
+// modelId is deliberately absent from this table. A compound unique containing
+// a nullable column does not constrain anything in PostgreSQL, because NULLs
+// compare as distinct — two "no model" rows for the same day would both insert.
+// Per-model analytics is derived from RequestAttempt instead, which carries the
+// model on every row and is already indexed for it.
 model UsageDaily {
   id            String   @id @default(cuid())
   workspaceId   String
-  applicationId String?
-  environmentId String?
-  modelId       String?
+  applicationId String
+  environmentId String
   // Truncated to UTC midnight.
   day           DateTime @db.Date
 
-  requestCount    Int     @default(0)
-  successCount    Int     @default(0)
-  failureCount    Int     @default(0)
-  fallbackCount   Int     @default(0)
-  inputTokens     Int     @default(0)
-  outputTokens    Int     @default(0)
-  estimatedCost   Decimal @default(0) @db.Decimal(12, 6)
-  totalLatencyMs  BigInt  @default(0)
+  requestCount   Int     @default(0)
+  successCount   Int     @default(0)
+  failureCount   Int     @default(0)
+  fallbackCount  Int     @default(0)
+  inputTokens    Int     @default(0)
+  outputTokens   Int     @default(0)
+  estimatedCost  Decimal @default(0) @db.Decimal(12, 6)
+  totalLatencyMs BigInt  @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  workspace   Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
-  application Application?     @relation(fields: [applicationId], references: [id], onDelete: Cascade)
-  environment Environment?     @relation(fields: [environmentId], references: [id], onDelete: Cascade)
-  model       ModelDefinition? @relation(fields: [modelId], references: [id], onDelete: SetNull)
+  workspace   Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  environment Environment @relation(fields: [environmentId], references: [id], onDelete: Cascade)
 
-  @@unique([workspaceId, applicationId, environmentId, modelId, day])
+  @@unique([workspaceId, applicationId, environmentId, day])
   @@index([workspaceId, day])
   @@map("usage_daily")
 }

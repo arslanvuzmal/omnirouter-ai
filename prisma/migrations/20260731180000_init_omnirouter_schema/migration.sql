@@ -1,3 +1,6 @@
+-- CreateSchema
+CREATE SCHEMA IF NOT EXISTS "public";
+
 -- CreateEnum
 CREATE TYPE "WorkspaceRole" AS ENUM ('OWNER', 'ADMIN', 'DEVELOPER', 'ANALYST', 'VIEWER');
 
@@ -343,9 +346,8 @@ CREATE TABLE "request_attempts" (
 CREATE TABLE "usage_daily" (
     "id" TEXT NOT NULL,
     "workspaceId" TEXT NOT NULL,
-    "applicationId" TEXT,
-    "environmentId" TEXT,
-    "modelId" TEXT,
+    "applicationId" TEXT NOT NULL,
+    "environmentId" TEXT NOT NULL,
     "day" DATE NOT NULL,
     "requestCount" INTEGER NOT NULL DEFAULT 0,
     "successCount" INTEGER NOT NULL DEFAULT 0,
@@ -546,7 +548,7 @@ CREATE UNIQUE INDEX "request_attempts_requestId_sequence_key" ON "request_attemp
 CREATE INDEX "usage_daily_workspaceId_day_idx" ON "usage_daily"("workspaceId", "day");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "usage_daily_workspaceId_applicationId_environmentId_modelId_key" ON "usage_daily"("workspaceId", "applicationId", "environmentId", "modelId", "day");
+CREATE UNIQUE INDEX "usage_daily_workspaceId_applicationId_environmentId_day_key" ON "usage_daily"("workspaceId", "applicationId", "environmentId", "day");
 
 -- CreateIndex
 CREATE INDEX "quotas_workspaceId_enabled_idx" ON "quotas"("workspaceId", "enabled");
@@ -664,9 +666,6 @@ ALTER TABLE "usage_daily" ADD CONSTRAINT "usage_daily_applicationId_fkey" FOREIG
 
 -- AddForeignKey
 ALTER TABLE "usage_daily" ADD CONSTRAINT "usage_daily_environmentId_fkey" FOREIGN KEY ("environmentId") REFERENCES "environments"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "usage_daily" ADD CONSTRAINT "usage_daily_modelId_fkey" FOREIGN KEY ("modelId") REFERENCES "model_definitions"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "quotas" ADD CONSTRAINT "quotas_workspaceId_fkey" FOREIGN KEY ("workspaceId") REFERENCES "workspaces"("id") ON DELETE CASCADE ON UPDATE CASCADE;
