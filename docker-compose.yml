@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: omnirouter-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: omnirouter
+      POSTGRES_PASSWORD: omnirouter_local_dev
+      POSTGRES_DB: omnirouter
+    ports:
+      - '5435:5432'
+    volumes:
+      - omnirouter_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U omnirouter -d omnirouter']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  omnirouter_pgdata:

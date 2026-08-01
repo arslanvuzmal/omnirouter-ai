@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+dist/
+coverage/
+lib/database/generated/
+prisma/migrations/
+playwright-report/
+test-results/
+portfolio/screenshots/
+package-lock.json
+*.log
