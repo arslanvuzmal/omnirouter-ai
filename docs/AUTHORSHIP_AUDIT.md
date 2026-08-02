@@ -80,3 +80,37 @@ No commit carries a `Co-Authored-By`, `Generated-By`, `Co-developed-by` or sessi
 ---
 
 _Audit re-run immediately before publication; results recorded in `docs/FINAL_PROJECT_REPORT.md`._
+
+---
+
+## Verified result
+
+**Date:** 2 August 2026
+**Commits audited:** 8 (entire history, all refs)
+
+```
+$ git shortlog -sne --all
+     8	Arslan Vuzmal Lone <arslanvuzmallone@gmail.com>
+
+$ git log --format="A:%an <%ae>%nC:%cn <%ce>" --all | sort -u
+A:Arslan Vuzmal Lone <arslanvuzmallone@gmail.com>
+C:Arslan Vuzmal Lone <arslanvuzmallone@gmail.com>
+```
+
+| Check                                               | Result                |
+| --------------------------------------------------- | --------------------- |
+| Distinct authors                                    | 1 — the project owner |
+| Distinct committers                                 | 1 — the project owner |
+| Co-author / generated-by / co-developed-by trailers | none                  |
+| Assistant or bot identity as author or committer    | none                  |
+| Session URLs in commit messages                     | none                  |
+| `package.json` author                               | `Arslan Vuzmal Lone`  |
+| Assistant credit in README, docs or source headers  | none                  |
+
+The only occurrences of "Anthropic" or "Claude" in tracked files are technical
+references to a supported AI provider: the `ANTHROPIC` enum value, the
+`ANTHROPIC_API_KEY` variable, the provider adapter, a capability-matching
+regular expression, provider lists in documentation, and factual citations in
+`RESEARCH_NOTES.md`. None appears as a credit, byline or attribution.
+
+**AUTOMATED ASSISTANT CONTRIBUTOR STATUS: NOT PRESENT — VERIFIED**
