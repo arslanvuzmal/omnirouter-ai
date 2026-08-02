@@ -449,7 +449,8 @@ export function evaluateRoute(input: RouteInput): RouteResult {
       ? describeSelection(input.strategy, selected, eligible.length)
       : buildNoCandidateReason(input.candidates.length, rejected),
     scoreBreakdown,
-    fallbackOrder: fallbackChain.map((candidate) => candidate.modelId),
+    // Labels, not internal ids: this field is read by a human in the trace.
+    fallbackOrder: fallbackChain.map((candidate) => candidate.modelLabel),
     evaluatedAt: new Date().toISOString(),
   };
 

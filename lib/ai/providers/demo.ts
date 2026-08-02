@@ -315,14 +315,13 @@ function applyFaults(
     );
   }
 
-  if (behaviour.forceTimeout) {
-    throw new ProviderError(
-      buildNormalisedError('TIMEOUT', {
-        message: `Demo provider exceeded the ${timeoutMs} ms timeout.`,
-      }),
-    );
-  }
+  // forceTimeout is handled by the caller, which must burn real time before
+  // throwing so the recorded attempt latency reflects a genuine stall.
+  void timeoutMs;
 }
+
+/** Simulated stall before a timeout, capped so demos stay watchable. */
+const SIMULATED_TIMEOUT_MS = 1_500;
 
 export class DemoProvider implements ProviderAdapter {
   readonly kind = 'DEMO' as const;
@@ -365,9 +364,20 @@ export class DemoProvider implements ProviderAdapter {
     const seed = seedFrom(request.model, request.messages);
     const random = createRandom(seed);
 
-    // Faults are evaluated before any simulated work so that a timeout costs
-    // the caller its configured latency rather than a full response.
+    // Immediate faults are raised before any simulated work is done.
     applyFaults(context.demoBehaviour, context.timeoutMs);
+
+    // A timeout must cost real elapsed time, otherwise the trace would show a
+    // 0 ms "timeout" — which would misrepresent what a stalled provider does.
+    if (context.demoBehaviour?.forceTimeout) {
+      const stall = Math.min(SIMULATED_TIMEOUT_MS, context.timeoutMs);
+      await sleep(stall);
+      throw new ProviderError(
+        buildNormalisedError('TIMEOUT', {
+          message: `Demo provider did not respond within ${stall} ms.`,
+        }),
+      );
+    }
 
     const latencyMs =
       context.demoBehaviour?.forceLatencyMs ??
