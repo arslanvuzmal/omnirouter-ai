@@ -63,3 +63,10 @@ desktop.ini
 # local scratch
 tmp/
 .tmp/
+
+# vercel
+.vercel
+
+# Vercel's CLI appends a bare `.env*` here on link, which would shadow the
+# `!.env.example` negation above. The environment rules at the top of this file
+# are the authoritative ones.
