@@ -26,8 +26,9 @@
 
 ## Live demo
 
-> **Demo:** _deployment link added once verified live_
-> **Guided walkthrough:** `/demo/story` — six steps, about a minute
+> ### **[omnirouter-ai.vercel.app](https://omnirouter-ai.vercel.app)**
+>
+> **Guided walkthrough:** [`/demo/story`](https://omnirouter-ai.vercel.app/demo/story) — six steps, about a minute
 >
 > **Sign in with any role:**
 >

@@ -67,6 +67,13 @@ tmp/
 # vercel
 .vercel
 
-# Vercel's CLI appends a bare `.env*` here on link, which would shadow the
-# `!.env.example` negation above. The environment rules at the top of this file
-# are the authoritative ones.
+# Vercel's CLI re-appends a bare `.env*` here on link, which would shadow the
+# `!.env.example` negation above. Re-negated so the template stays committable;
+# the environment rules at the top of this file are the authoritative ones.
+.env*
+!.env.example
+
+# local agent tooling installed by marketplace integrations, not project source
+.agents/
+.claude/
+skills-lock.json

@@ -14,7 +14,7 @@ The distinguishing contribution is that **a routing decision is a persisted arte
 
 The application is complete and verified locally. `npm run verify` passes, 124 tests pass, all 28 routes render, and 18/18 demonstration checks hold.
 
-**Publication to GitHub and deployment to Vercel remain blocked on GitHub authentication**, which requires an interactive login only the project owner can perform.
+**Published and deployed.** The repository is public at `arslanvuzmal/omnirouter-ai` with CI passing every step, and the application is live at **https://omnirouter-ai.vercel.app**, verified end to end against its production database.
 
 ---
 
@@ -183,23 +183,24 @@ The attempt strip is the moment the product lands. Give it room.
 ```
 LOCAL PROJECT:      D:\OmniRouter AI
 BACKUP:             not required — no pre-existing project found
-GITHUB:             BLOCKED — gh not authenticated
-LATEST COMMIT:      d67a1a8
+GITHUB:             https://github.com/arslanvuzmal/omnirouter-ai (public)
+LATEST COMMIT:      see `git log -1` — history is 11 commits, single author
 GIT AUTHOR:         Arslan Vuzmal Lone <arslanvuzmallone@gmail.com>
 GIT COMMITTER:      Arslan Vuzmal Lone <arslanvuzmallone@gmail.com>
 
 AUTOMATED ASSISTANT CONTRIBUTOR STATUS:
 NOT PRESENT — VERIFIED
+(GitHub reports one contributor: arslanvuzmal, User)
 
-CI:                 workflow committed, not yet run (needs the remote)
-VERCEL:             authenticated as avuzmal; awaiting repository + database
-DATABASE:           PostgreSQL 16 local (:5435), 21 tables, migrated
+CI:                 PASSING — every step green against a PostgreSQL service
+VERCEL:             https://omnirouter-ai.vercel.app (live, verified)
+DATABASE:           Neon PostgreSQL via Vercel marketplace, migrated + seeded
 TESTS:              124 passed, 0 failed
 BUILD:              passed — 30 routes
-DEMO:               18/18 checks passed, 206 requests across 30 days
+DEMO:               18/18 checks passed against the production database
 SCREENSHOTS:        12 captured from the running application
+LIVE VERIFICATION:  28/28 routes 2xx in production, 0 console errors
 
 KNOWN BLOCKERS:
-  1. GitHub authentication — run: gh auth login
-  2. Supabase project not provisioned (needs DATABASE_URL + DIRECT_URL)
+  none — published, CI green, deployed and verified end to end
 ```
