@@ -102,7 +102,14 @@ export default async function RequestDetailPage({
             label="Attempts"
             value={request.attemptCount}
             tone={request.attemptCount > 1 ? 'warning' : 'neutral'}
-            hint={request.fallbackUsed ? 'Recovered on a fallback' : 'Single target'}
+            hint={
+              // fallbackUsed means another target was tried, not that it worked.
+              request.fallbackUsed
+                ? request.status === 'SUCCEEDED'
+                  ? 'Recovered on a fallback'
+                  : 'Fallback attempted, all targets failed'
+                : 'Single target'
+            }
           />
           <Stat
             label="Tokens"

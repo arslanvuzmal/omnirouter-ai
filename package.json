@@ -28,6 +28,7 @@
     "demo:traffic": "tsx scripts/demo-traffic.ts",
     "demo:failure": "tsx scripts/demo-failure.ts",
     "demo:verify": "tsx scripts/demo-verify.ts",
+    "export:obsidian": "tsx scripts/export-obsidian.ts",
     "test": "vitest run --project unit",
     "test:watch": "vitest --project unit",
     "test:integration": "vitest run --project integration",
