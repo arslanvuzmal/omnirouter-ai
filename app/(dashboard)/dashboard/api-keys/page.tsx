@@ -48,10 +48,10 @@ export default async function ApiKeysPage() {
             aria-hidden="true"
           />
           <p className="text-xs leading-relaxed text-ink-200">
-            Only a SHA-256 hash of each key is stored. The full value is shown
-            once at creation and cannot be recovered afterwards — not by an
-            owner, not from the database, and not from this screen. The prefix
-            below is for identification only and cannot authenticate a request.
+            Only a SHA-256 hash of each key is stored. The full value is shown once at
+            creation and cannot be recovered afterwards — not by an owner, not from the
+            database, and not from this screen. The prefix below is for identification
+            only and cannot authenticate a request.
           </p>
         </div>
 
@@ -93,9 +93,7 @@ export default async function ApiKeysPage() {
                   <Td>
                     <div className="flex flex-wrap gap-1">
                       {key.scopes.length === 0 ? (
-                        <span className="text-[10px] text-ink-600">
-                          unrestricted
-                        </span>
+                        <span className="text-[10px] text-ink-600">unrestricted</span>
                       ) : (
                         key.scopes.map((scope) => (
                           <Badge key={scope} tone="neutral">

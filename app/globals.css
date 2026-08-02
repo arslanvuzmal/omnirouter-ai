@@ -45,8 +45,8 @@
   --color-danger-600: #be3455;
 
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
   --font-mono:
     ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
 
@@ -88,11 +88,7 @@ body {
       rgba(18, 179, 209, 0.14),
       transparent 70%
     ),
-    radial-gradient(
-      ellipse 50% 45% at 85% 10%,
-      rgba(116, 88, 216, 0.1),
-      transparent 70%
-    );
+    radial-gradient(ellipse 50% 45% at 85% 10%, rgba(116, 88, 216, 0.1), transparent 70%);
 }
 
 /* --------------------------------------------------------------------------

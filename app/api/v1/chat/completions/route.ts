@@ -126,8 +126,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       return NextResponse.json(
         {
           error: {
-            message:
-              'A request with this Idempotency-Key has already been processed.',
+            message: 'A request with this Idempotency-Key has already been processed.',
             type: 'omnirouter_error',
             code: 'idempotency_replay',
           },
@@ -154,8 +153,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     maxTokens: parsed.data.max_tokens,
     requestedModelId: parsed.data.model,
     structuredOutputSchema: parsed.data.response_format?.json_schema.schema as
-      | Record<string, unknown>
-      | undefined,
+      Record<string, unknown> | undefined,
     idempotencyKey,
     source: 'api',
   });
@@ -227,9 +225,5 @@ export async function POST(request: Request): Promise<NextResponse> {
 }
 
 export async function GET(): Promise<NextResponse> {
-  return errorResponse(
-    405,
-    'Use POST for chat completions.',
-    'method_not_allowed',
-  );
+  return errorResponse(405, 'Use POST for chat completions.', 'method_not_allowed');
 }

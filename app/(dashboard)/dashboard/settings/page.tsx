@@ -123,10 +123,9 @@ export default async function SettingsPage() {
               aria-hidden="true"
             />
             <p className="text-xs leading-relaxed text-warning-400">
-              This workspace is protected. Destructive operations are disabled
-              because it is shared demonstration data that other visitors depend
-              on. The restriction is enforced server-side, not by hiding
-              controls.
+              This workspace is protected. Destructive operations are disabled because it
+              is shared demonstration data that other visitors depend on. The restriction
+              is enforced server-side, not by hiding controls.
             </p>
           </div>
         ) : null}

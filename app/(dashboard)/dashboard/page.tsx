@@ -260,9 +260,7 @@ export default async function DashboardOverviewPage() {
                   />
                   <div className="px-5 py-4">
                     {errors.length === 0 ? (
-                      <p className="text-xs text-ink-600">
-                        No failures in this window.
-                      </p>
+                      <p className="text-xs text-ink-600">No failures in this window.</p>
                     ) : (
                       <ul className="space-y-2">
                         {errors.map((group) => (

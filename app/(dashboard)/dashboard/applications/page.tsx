@@ -81,9 +81,7 @@ export default async function ApplicationsPage() {
                       </span>{' '}
                       API keys
                     </span>
-                    <span className="font-mono text-ink-600">
-                      {application.slug}
-                    </span>
+                    <span className="font-mono text-ink-600">{application.slug}</span>
                   </div>
 
                   <ul className="space-y-1.5">

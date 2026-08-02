@@ -117,9 +117,7 @@ export default async function RequestDetailPage({
           <Stat
             label="Resolved model"
             value={
-              <span className="font-mono text-base">
-                {request.resolvedModel ?? '—'}
-              </span>
+              <span className="font-mono text-base">{request.resolvedModel ?? '—'}</span>
             }
             hint={request.policy ? `via ${request.policy.name}` : 'No policy'}
           />
@@ -137,11 +135,7 @@ export default async function RequestDetailPage({
           </Panel>
         ) : null}
 
-        <TracePanels
-          stages={stages}
-          attempts={attempts}
-          explanation={explanation}
-        />
+        <TracePanels stages={stages} attempts={attempts} explanation={explanation} />
 
         <Panel>
           <PanelHeader
@@ -174,10 +168,10 @@ export default async function RequestDetailPage({
               </div>
             ) : (
               <p className="text-xs leading-relaxed text-ink-400">
-                No prompt or response body was stored for this request. The
-                workspace is set to <strong className="text-ink-200">metadata only</strong>,
-                which records counts, timings, cost and routing decisions but never
-                the content itself.
+                No prompt or response body was stored for this request. The workspace is
+                set to <strong className="text-ink-200">metadata only</strong>, which
+                records counts, timings, cost and routing decisions but never the content
+                itself.
               </p>
             )}
           </div>

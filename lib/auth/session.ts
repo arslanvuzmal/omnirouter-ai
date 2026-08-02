@@ -181,9 +181,7 @@ export async function registerFailedLogin(userId: string): Promise<void> {
     data: {
       failedLogins,
       lockedUntil:
-        failedLogins >= MAX_FAILED_LOGINS
-          ? new Date(Date.now() + LOCKOUT_MS)
-          : null,
+        failedLogins >= MAX_FAILED_LOGINS ? new Date(Date.now() + LOCKOUT_MS) : null,
     },
   });
 }

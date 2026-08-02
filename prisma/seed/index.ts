@@ -78,8 +78,7 @@ const POLICIES: PolicyDefinition[] = [
   },
   {
     name: 'Fastest response',
-    description:
-      'Selects on recent measured latency for interactive, user-facing paths.',
+    description: 'Selects on recent measured latency for interactive, user-facing paths.',
     strategy: 'LOWEST_RECENT_LATENCY',
     models: [
       { modelLabel: 'astra-fast', priority: 1, weight: 1 },
@@ -103,8 +102,7 @@ const POLICIES: PolicyDefinition[] = [
   },
   {
     name: 'Reliability first',
-    description:
-      'Prefers the healthiest target with the strongest recent success rate.',
+    description: 'Prefers the healthiest target with the strongest recent success rate.',
     strategy: 'RELIABILITY_FIRST',
     models: [
       { modelLabel: 'astra-pro', priority: 1, weight: 1 },
@@ -325,10 +323,7 @@ async function main(): Promise<void> {
 
     environments.set(definition.slug, created);
   }
-  log(
-    'applications',
-    `${applicationsBySlug.size} applications, 2 environments each`,
-  );
+  log('applications', `${applicationsBySlug.size} applications, 2 environments each`);
 
   // --- Virtual API keys ---------------------------------------------------
   let keyCount = 0;
@@ -343,8 +338,7 @@ async function main(): Promise<void> {
       if (existing) continue;
 
       const generated = generateApiKey(environment.type);
-      const label =
-        environment.type === 'PRODUCTION' ? 'Production' : 'Development';
+      const label = environment.type === 'PRODUCTION' ? 'Production' : 'Development';
 
       await prisma.virtualAPIKey.create({
         data: {
@@ -630,16 +624,56 @@ async function main(): Promise<void> {
     });
 
     const entries = [
-      { action: 'workspace.created', resourceType: 'workspace', detail: 'Northwind Labs' },
-      { action: 'provider.connected', resourceType: 'provider_connection', detail: 'Demo provider' },
-      { action: 'policy.created', resourceType: 'routing_policy', detail: 'Balanced production' },
-      { action: 'policy.activated', resourceType: 'routing_policy', detail: 'Balanced production' },
-      { action: 'application.created', resourceType: 'application', detail: 'Support Copilot' },
-      { action: 'apikey.created', resourceType: 'virtual_api_key', detail: 'Production key' },
-      { action: 'apikey.revoked', resourceType: 'virtual_api_key', detail: 'Retired integration key' },
-      { action: 'prompt.version_created', resourceType: 'prompt', detail: 'Support reply drafter v2' },
-      { action: 'quota.created', resourceType: 'quota', detail: 'Workspace daily ceiling' },
-      { action: 'member.invited', resourceType: 'workspace_member', detail: 'developer@omnirouter.demo' },
+      {
+        action: 'workspace.created',
+        resourceType: 'workspace',
+        detail: 'Northwind Labs',
+      },
+      {
+        action: 'provider.connected',
+        resourceType: 'provider_connection',
+        detail: 'Demo provider',
+      },
+      {
+        action: 'policy.created',
+        resourceType: 'routing_policy',
+        detail: 'Balanced production',
+      },
+      {
+        action: 'policy.activated',
+        resourceType: 'routing_policy',
+        detail: 'Balanced production',
+      },
+      {
+        action: 'application.created',
+        resourceType: 'application',
+        detail: 'Support Copilot',
+      },
+      {
+        action: 'apikey.created',
+        resourceType: 'virtual_api_key',
+        detail: 'Production key',
+      },
+      {
+        action: 'apikey.revoked',
+        resourceType: 'virtual_api_key',
+        detail: 'Retired integration key',
+      },
+      {
+        action: 'prompt.version_created',
+        resourceType: 'prompt',
+        detail: 'Support reply drafter v2',
+      },
+      {
+        action: 'quota.created',
+        resourceType: 'quota',
+        detail: 'Workspace daily ceiling',
+      },
+      {
+        action: 'member.invited',
+        resourceType: 'workspace_member',
+        detail: 'developer@omnirouter.demo',
+      },
     ];
 
     for (const [index, entry] of entries.entries()) {

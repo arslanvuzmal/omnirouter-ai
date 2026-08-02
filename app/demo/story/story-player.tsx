@@ -4,13 +4,7 @@ import { ArrowRight, Check, ChevronLeft, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import {
-  Badge,
-  Button,
-  Panel,
-  PanelHeader,
-  Stat,
-} from '@/components/ui/primitives';
+import { Badge, Button, Panel, PanelHeader, Stat } from '@/components/ui/primitives';
 import { formatCost } from '@/lib/ai/pricing';
 import type { RouteExplanation } from '@/lib/ai/routing/types';
 import { cn, formatLatency } from '@/lib/utils';
@@ -79,8 +73,7 @@ export function StoryPlayer({
     {
       title: 'A policy decides — and says why',
       body: 'A balanced policy scores each candidate on health, recent success rate, latency and cost. The decision is stored on the request, so it stays readable after the policy has been edited.',
-      render: () =>
-        normal ? <ExplanationCard request={normal} /> : <Missing />,
+      render: () => (normal ? <ExplanationCard request={normal} /> : <Missing />),
     },
     {
       title: 'A normal request',
@@ -96,8 +89,7 @@ export function StoryPlayer({
     {
       title: 'The fallback succeeds',
       body: 'With the primary target exhausted, the request moves to the next model in the ranked chain and completes. The caller never sees the failure — but an operator can see every attempt it took.',
-      render: () =>
-        fallback ? <RequestCard request={fallback} /> : <Missing />,
+      render: () => (fallback ? <RequestCard request={fallback} /> : <Missing />),
     },
     {
       title: 'Some failures should not be routed around',
@@ -190,8 +182,7 @@ export function StoryPlayer({
 function Missing() {
   return (
     <p className="text-xs text-ink-600">
-      No seeded request of this kind is available. Run the demo seed to populate
-      it.
+      No seeded request of this kind is available. Run the demo seed to populate it.
     </p>
   );
 }
@@ -281,9 +272,7 @@ function AttemptStrip({ attempts }: { attempts: StoryAttempt[] }) {
               )}
             </span>
 
-            <span className="font-mono text-xs text-ink-50">
-              {attempt.modelLabel}
-            </span>
+            <span className="font-mono text-xs text-ink-50">{attempt.modelLabel}</span>
 
             <Badge tone={ok ? 'success' : 'danger'}>
               {attempt.errorCategory ?? attempt.status.toLowerCase()}
@@ -331,9 +320,7 @@ function ExplanationCard({ request }: { request: StoryRequest }) {
                   : 'border-base-700 bg-base-850',
               )}
             >
-              <span className="font-mono text-xs text-ink-200">
-                {entry.modelLabel}
-              </span>
+              <span className="font-mono text-xs text-ink-200">{entry.modelLabel}</span>
               <span className="flex items-center gap-2.5">
                 {index === 0 ? <Badge tone="primary">selected</Badge> : null}
                 <span className="font-mono text-xs tabular-nums text-primary-300">
@@ -356,10 +343,8 @@ function ExplanationCard({ request }: { request: StoryRequest }) {
                 key={`${candidate.modelId}-${candidate.reason}`}
                 className="text-[11px] leading-relaxed text-ink-600"
               >
-                <span className="font-mono text-ink-400">
-                  {candidate.modelLabel}
-                </span>{' '}
-                — {candidate.detail}
+                <span className="font-mono text-ink-400">{candidate.modelLabel}</span> —{' '}
+                {candidate.detail}
               </li>
             ))}
           </ul>

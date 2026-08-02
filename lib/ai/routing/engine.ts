@@ -176,10 +176,7 @@ function weightedOrder(
   const ordered: RouteCandidate[] = [];
 
   while (pool.length > 0) {
-    const total = pool.reduce(
-      (sum, candidate) => sum + Math.max(0, candidate.weight),
-      0,
-    );
+    const total = pool.reduce((sum, candidate) => sum + Math.max(0, candidate.weight), 0);
 
     if (total <= 0) {
       // All remaining weights are zero: fall back to deterministic order.
@@ -358,10 +355,7 @@ export function evaluateRoute(input: RouteInput): RouteResult {
   const random = input.random ?? Math.random;
   const weights = input.weights ?? DEFAULT_SCORING_WEIGHTS;
 
-  const { eligible, rejected } = filterCandidates(
-    input.candidates,
-    input.requirements,
-  );
+  const { eligible, rejected } = filterCandidates(input.candidates, input.requirements);
 
   let ordered: RouteCandidate[] = [];
   let scoreBreakdown: ScoredCandidate[] = [];

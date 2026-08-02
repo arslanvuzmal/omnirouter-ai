@@ -240,8 +240,7 @@ async function loadCandidates(
         signal && signal.latencyCount > 0
           ? signal.latencySum / signal.latencyCount
           : null,
-      recentSuccessRate:
-        total >= 1 ? (signal?.successes ?? 0) / total : null,
+      recentSuccessRate: total >= 1 ? (signal?.successes ?? 0) / total : null,
       recentSampleSize: Math.min(total, SIGNAL_WINDOW),
       isAvailable: model.isAvailable && model.connection.status === 'ACTIVE',
       isDemoModel: model.isDemoModel,
@@ -349,9 +348,7 @@ export async function runCompletion(
   const requirements: RouteRequirements = {
     capabilities: [
       ...(input.requiredCapabilities ?? []),
-      ...(input.structuredOutputSchema
-        ? (['structured_output'] as Capability[])
-        : []),
+      ...(input.structuredOutputSchema ? (['structured_output'] as Capability[]) : []),
     ],
     minContextWindow: estimatedInputTokens + estimatedOutputTokens,
     maxEstimatedCost:
@@ -451,10 +448,7 @@ export async function runCompletion(
     invoke: async (candidate, request, context) => {
       invocationIndex += 1;
       const adapter = getProvider(candidate.providerKind);
-      return adapter.chatCompletion(
-        { ...request, model: candidate.modelLabel },
-        context,
-      );
+      return adapter.chatCompletion({ ...request, model: candidate.modelLabel }, context);
     },
     classify: (candidate, error) => {
       const adapter = getProvider(candidate.providerKind);
@@ -611,19 +605,18 @@ async function persistRejection(args: {
 }): Promise<RunCompletionResult> {
   const { input, correlationId, stages, category, message } = args;
 
-  const explanation: RouteExplanation =
-    args.explanation ?? {
-      policyId: input.policyId,
-      policyName: 'Not evaluated',
-      strategy: 'BALANCED',
-      candidates: [],
-      rejectedCandidates: [],
-      selectedCandidate: null,
-      reason: message,
-      scoreBreakdown: [],
-      fallbackOrder: [],
-      evaluatedAt: new Date().toISOString(),
-    };
+  const explanation: RouteExplanation = args.explanation ?? {
+    policyId: input.policyId,
+    policyName: 'Not evaluated',
+    strategy: 'BALANCED',
+    candidates: [],
+    rejectedCandidates: [],
+    selectedCandidate: null,
+    reason: message,
+    scoreBreakdown: [],
+    fallbackOrder: [],
+    evaluatedAt: new Date().toISOString(),
+  };
 
   const record = await prisma.request.create({
     data: {

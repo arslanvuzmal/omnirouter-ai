@@ -38,9 +38,7 @@ export default async function HealthPage() {
 
   const healthy = connections.filter((c) => c.healthState === 'HEALTHY').length;
   const degraded = connections.filter((c) => c.healthState === 'DEGRADED').length;
-  const unavailable = connections.filter(
-    (c) => c.healthState === 'UNAVAILABLE',
-  ).length;
+  const unavailable = connections.filter((c) => c.healthState === 'UNAVAILABLE').length;
 
   return (
     <>
@@ -99,9 +97,7 @@ export default async function HealthPage() {
                     <HealthBadge state={connection.healthState} />
                   </Td>
                   <Td>
-                    <Badge
-                      tone={connection.status === 'ACTIVE' ? 'success' : 'danger'}
-                    >
+                    <Badge tone={connection.status === 'ACTIVE' ? 'success' : 'danger'}>
                       {connection.status.toLowerCase()}
                     </Badge>
                   </Td>
@@ -149,13 +145,9 @@ export default async function HealthPage() {
                     <HealthBadge state={check.state} />
                   </Td>
                   <Td className="text-right font-mono text-xs tabular-nums">
-                    {check.latencyMs === null
-                      ? '—'
-                      : formatLatency(check.latencyMs)}
+                    {check.latencyMs === null ? '—' : formatLatency(check.latencyMs)}
                   </Td>
-                  <Td className="text-[11px] text-ink-400">
-                    {check.detail ?? '—'}
-                  </Td>
+                  <Td className="text-[11px] text-ink-400">{check.detail ?? '—'}</Td>
                   <Td className="text-xs whitespace-nowrap text-ink-400">
                     {formatRelative(check.checkedAt)}
                   </Td>

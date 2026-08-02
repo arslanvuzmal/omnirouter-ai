@@ -82,9 +82,7 @@ export async function getOverviewMetrics(
     }),
   ]);
 
-  const byStatus = new Map(
-    statusCounts.map((row) => [row.status, row._count._all]),
-  );
+  const byStatus = new Map(statusCounts.map((row) => [row.status, row._count._all]));
 
   const total = aggregate._count._all;
   const succeeded = byStatus.get('SUCCEEDED') ?? 0;
@@ -117,9 +115,7 @@ export interface DailyPoint {
   estimatedCost: number;
 }
 
-export async function getDailySeries(
-  filters: AnalyticsFilters,
-): Promise<DailyPoint[]> {
+export async function getDailySeries(filters: AnalyticsFilters): Promise<DailyPoint[]> {
   const days = filters.days ?? 30;
   const since = windowStart(days);
 
@@ -215,8 +211,7 @@ export async function getModelDistribution(
     entry.requests += count;
     entry.averageLatencyMs =
       entry.requests > 0
-        ? (entry.averageLatencyMs * previousTotal +
-            (row._avg.latencyMs ?? 0) * count) /
+        ? (entry.averageLatencyMs * previousTotal + (row._avg.latencyMs ?? 0) * count) /
           entry.requests
         : 0;
 
@@ -262,8 +257,7 @@ export async function getProviderDistribution(
     entry.requests += count;
     entry.averageLatencyMs =
       entry.requests > 0
-        ? (entry.averageLatencyMs * previousTotal +
-            (row._avg.latencyMs ?? 0) * count) /
+        ? (entry.averageLatencyMs * previousTotal + (row._avg.latencyMs ?? 0) * count) /
           entry.requests
         : 0;
 
@@ -321,9 +315,7 @@ export interface ErrorGroup {
  *
  * A list of individual failures is noise; "312 × RATE_LIMIT" is an action.
  */
-export async function getErrorGroups(
-  filters: AnalyticsFilters,
-): Promise<ErrorGroup[]> {
+export async function getErrorGroups(filters: AnalyticsFilters): Promise<ErrorGroup[]> {
   const rows = await prisma.request.groupBy({
     by: ['errorCategory'],
     where: { ...baseWhere(filters), errorCategory: { not: null } },
@@ -344,10 +336,7 @@ export async function getErrorGroups(
     .sort((a, b) => b.count - a.count);
 }
 
-export async function getRecentRequests(
-  filters: AnalyticsFilters,
-  limit = 10,
-) {
+export async function getRecentRequests(filters: AnalyticsFilters, limit = 10) {
   return prisma.request.findMany({
     where: { workspaceId: filters.workspaceId },
     select: {

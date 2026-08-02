@@ -32,9 +32,7 @@ const ATTEMPT_TONE: Record<AttemptStatus, BadgeTone> = {
 
 export function AttemptStatusBadge({ status }: { status: AttemptStatus }) {
   return (
-    <Badge tone={ATTEMPT_TONE[status]}>
-      {status.toLowerCase().replace('_', ' ')}
-    </Badge>
+    <Badge tone={ATTEMPT_TONE[status]}>{status.toLowerCase().replace('_', ' ')}</Badge>
   );
 }
 
@@ -68,9 +66,7 @@ export const ERROR_LABELS: Record<ErrorCategory, string> = {
 export function ErrorBadge({ category }: { category: ErrorCategory }) {
   // Quota rejections are a deliberate policy outcome, not a provider fault.
   const tone: BadgeTone =
-    category === 'QUOTA_EXCEEDED' || category === 'SAFETY_REFUSAL'
-      ? 'warning'
-      : 'danger';
+    category === 'QUOTA_EXCEEDED' || category === 'SAFETY_REFUSAL' ? 'warning' : 'danger';
 
   return <Badge tone={tone}>{ERROR_LABELS[category]}</Badge>;
 }

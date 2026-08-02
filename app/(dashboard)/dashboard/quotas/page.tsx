@@ -115,12 +115,8 @@ export default async function QuotasPage() {
                 return (
                   <tr key={quota.id}>
                     <Td>
-                      <span className="block text-xs text-ink-50">
-                        {quota.name}
-                      </span>
-                      {!quota.enabled ? (
-                        <Badge tone="neutral">disabled</Badge>
-                      ) : null}
+                      <span className="block text-xs text-ink-50">{quota.name}</span>
+                      {!quota.enabled ? <Badge tone="neutral">disabled</Badge> : null}
                     </Td>
                     <Td className="text-[11px] text-ink-400">
                       {quota.application?.name ?? 'Whole workspace'}
@@ -134,9 +130,7 @@ export default async function QuotasPage() {
                     <Td className="text-[11px] text-ink-400">
                       <div className="space-y-0.5">
                         {quota.maxRequests ? (
-                          <div>
-                            {quota.maxRequests.toLocaleString()} requests
-                          </div>
+                          <div>{quota.maxRequests.toLocaleString()} requests</div>
                         ) : null}
                         {quota.maxTokens ? (
                           <div>{quota.maxTokens.toLocaleString()} tokens</div>

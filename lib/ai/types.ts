@@ -48,12 +48,7 @@ export interface CompletionResponse {
   metadata: Record<string, unknown>;
 }
 
-export type FinishReason =
-  | 'stop'
-  | 'length'
-  | 'content_filter'
-  | 'tool_calls'
-  | 'error';
+export type FinishReason = 'stop' | 'length' | 'content_filter' | 'tool_calls' | 'error';
 
 export interface StreamChunk {
   delta: string;
@@ -62,11 +57,7 @@ export interface StreamChunk {
   usage?: TokenUsage;
 }
 
-export type Capability =
-  | 'streaming'
-  | 'structured_output'
-  | 'vision'
-  | 'tool_use';
+export type Capability = 'streaming' | 'structured_output' | 'vision' | 'tool_use';
 
 export interface ProviderModelInfo {
   modelId: string;

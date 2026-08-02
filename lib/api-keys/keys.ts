@@ -64,10 +64,7 @@ export function maskKey(keyPrefix: string): string {
 }
 
 export type KeyRejectionReason =
-  | 'revoked'
-  | 'expired'
-  | 'missing_scope'
-  | 'environment_mismatch';
+  'revoked' | 'expired' | 'missing_scope' | 'environment_mismatch';
 
 export interface KeyValidationInput {
   status: KeyStatus;

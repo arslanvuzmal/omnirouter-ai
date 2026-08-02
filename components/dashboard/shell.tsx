@@ -77,9 +77,7 @@ export function DashboardShell({
           </div>
 
           <div className="border-b border-base-800 px-4 py-3">
-            <p className="truncate text-xs font-medium text-ink-50">
-              {workspaceName}
-            </p>
+            <p className="truncate text-xs font-medium text-ink-50">{workspaceName}</p>
             <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
               <Badge tone={ROLE_TONE[role]}>{role}</Badge>
               {isDemoWorkspace ? <DemoDataNotice /> : null}
@@ -128,9 +126,7 @@ export function PageHeader({
     <header className="border-b border-base-800 px-5 py-5 sm:px-7">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
-          <h1 className="text-xl font-semibold tracking-tight text-ink-50">
-            {title}
-          </h1>
+          <h1 className="text-xl font-semibold tracking-tight text-ink-50">{title}</h1>
           {description ? (
             <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-ink-400">
               {description}
@@ -138,9 +134,7 @@ export function PageHeader({
           ) : null}
           {meta ? <div className="mt-2.5">{meta}</div> : null}
         </div>
-        {actions ? (
-          <div className="flex shrink-0 flex-wrap gap-2">{actions}</div>
-        ) : null}
+        {actions ? <div className="flex shrink-0 flex-wrap gap-2">{actions}</div> : null}
       </div>
     </header>
   );

@@ -104,8 +104,7 @@ export const DEMO_MODELS: Record<DemoModelId, DemoModelSpec> = {
   },
 };
 
-export const DEMO_MODEL_DISCLAIMER =
-  'Demo model — no external provider request';
+export const DEMO_MODEL_DISCLAIMER = 'Demo model — no external provider request';
 
 function isDemoModelId(value: string): value is DemoModelId {
   return (DEMO_MODEL_IDS as readonly string[]).includes(value);
@@ -127,9 +126,7 @@ function seedFrom(modelId: string, messages: ChatMessage[]): number {
   const canonical = messages
     .map((message) => `${message.role}:${message.content}`)
     .join('\n');
-  const digest = createHash('sha256')
-    .update(`${modelId}::${canonical}`)
-    .digest();
+  const digest = createHash('sha256').update(`${modelId}::${canonical}`).digest();
 
   return digest.readUInt32BE(0);
 }
@@ -228,10 +225,7 @@ function composeStructured(
         result[key] = random() > 0.5;
         break;
       case 'array':
-        result[key] = ['alpha', 'beta', 'gamma'].slice(
-          0,
-          1 + Math.floor(random() * 3),
-        );
+        result[key] = ['alpha', 'beta', 'gamma'].slice(0, 1 + Math.floor(random() * 3));
         break;
       case 'object':
         result[key] = { note: 'demo value' };
@@ -256,10 +250,7 @@ function sleep(ms: number): Promise<void> {
  * Applies injected faults. Ordering matters: authentication is checked first
  * because a misconfigured connection should surface before anything else.
  */
-function applyFaults(
-  behaviour: DemoBehaviour | undefined,
-  timeoutMs: number,
-): void {
+function applyFaults(behaviour: DemoBehaviour | undefined, timeoutMs: number): void {
   if (!behaviour) return;
 
   if (behaviour.forceAuthFailure) {

@@ -1,9 +1,4 @@
-import {
-  AlertTriangle,
-  Check,
-  CircleSlash,
-  X,
-} from 'lucide-react';
+import { AlertTriangle, Check, CircleSlash, X } from 'lucide-react';
 
 import { AttemptStatusBadge, ErrorBadge } from '@/components/dashboard/status';
 import { Badge, Panel, PanelHeader } from '@/components/ui/primitives';
@@ -76,9 +71,7 @@ export function TraceTimeline({ stages }: { stages: TraceStage[] }) {
 
             <div className="min-w-0 flex-1 pt-0.5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-xs font-semibold text-ink-50">
-                  {stage.label}
-                </h3>
+                <h3 className="text-xs font-semibold text-ink-50">{stage.label}</h3>
                 <span className="font-mono text-[11px] tabular-nums text-ink-600">
                   +{stage.durationMs} ms
                 </span>
@@ -142,9 +135,7 @@ export function AttemptList({ attempts }: { attempts: AttemptView[] }) {
               <span className="flex h-5 w-5 items-center justify-center rounded bg-base-700 font-mono text-[10px] text-ink-200">
                 {attempt.sequence}
               </span>
-              <span className="font-mono text-xs text-ink-50">
-                {attempt.modelLabel}
-              </span>
+              <span className="font-mono text-xs text-ink-50">{attempt.modelLabel}</span>
               <Badge tone="neutral">{attempt.providerKind}</Badge>
               <AttemptStatusBadge status={attempt.status} />
               {attempt.errorCategory ? (
@@ -192,9 +183,7 @@ export function AttemptList({ attempts }: { attempts: AttemptView[] }) {
               {attempt.providerRequestId ? (
                 <div className="flex gap-1.5">
                   <dt className="text-ink-600">Provider id</dt>
-                  <dd className="font-mono text-ink-400">
-                    {attempt.providerRequestId}
-                  </dd>
+                  <dd className="font-mono text-ink-400">{attempt.providerRequestId}</dd>
                 </div>
               ) : null}
             </dl>
@@ -212,11 +201,7 @@ export function AttemptList({ attempts }: { attempts: AttemptView[] }) {
  * That is the point of the screen: understanding why the others were dropped is
  * usually more useful than knowing which one won.
  */
-export function RouteExplanationView({
-  explanation,
-}: {
-  explanation: RouteExplanation;
-}) {
+export function RouteExplanationView({ explanation }: { explanation: RouteExplanation }) {
   return (
     <div className="space-y-4 px-5 py-4">
       <div className="flex flex-wrap items-center gap-2">
@@ -279,9 +264,8 @@ export function RouteExplanationView({
             ))}
           </div>
           <p className="mt-2 text-[10px] leading-relaxed text-ink-600">
-            Selected according to the configured scoring policy. These weights
-            express a workspace preference; they do not identify an objectively
-            best model.
+            Selected according to the configured scoring policy. These weights express a
+            workspace preference; they do not identify an objectively best model.
           </p>
         </div>
       ) : null}

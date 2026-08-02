@@ -31,8 +31,8 @@ export default function DocsPage() {
           Using the unified API
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-400">
-          One endpoint, OpenAI-compatible in shape. Point an existing client at
-          it by changing the base URL and the key.
+          One endpoint, OpenAI-compatible in shape. Point an existing client at it by
+          changing the base URL and the key.
         </p>
       </header>
 
@@ -160,9 +160,7 @@ x-omnirouter-quota-warning: (only when a quota threshold is crossed)`}
                     <td className="px-5 py-2.5 font-mono text-[11px] text-ink-400">
                       {status}
                     </td>
-                    <td className="px-5 py-2.5 text-[11px] text-ink-400">
-                      {meaning}
-                    </td>
+                    <td className="px-5 py-2.5 text-[11px] text-ink-400">{meaning}</td>
                   </tr>
                 ))}
               </tbody>

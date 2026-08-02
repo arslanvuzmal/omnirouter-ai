@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  AlertTriangle,
-  Columns2,
-  ExternalLink,
-  Play,
-  RotateCcw,
-} from 'lucide-react';
+import { AlertTriangle, ExternalLink, Play, RotateCcw } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useTransition } from 'react';
 
@@ -265,13 +259,10 @@ export function PlaygroundClient({
 
           {!canExecute ? (
             <p className="flex items-start gap-2 rounded-lg border border-warning-400/30 bg-warning-400/10 px-3 py-2.5 text-[11px] leading-relaxed text-warning-400">
-              <AlertTriangle
-                className="mt-0.5 h-3.5 w-3.5 shrink-0"
-                aria-hidden="true"
-              />
-              Your role is read-only. Running a request requires developer access
-              or above — and the restriction is enforced on the server, not by
-              disabling this button.
+              <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              Your role is read-only. Running a request requires developer access or above
+              — and the restriction is enforced on the server, not by disabling this
+              button.
             </p>
           ) : null}
         </div>
@@ -282,22 +273,16 @@ export function PlaygroundClient({
         {results.length === 0 ? (
           <Panel className="flex min-h-64 items-center justify-center p-8">
             <div className="text-center">
-              <h3 className="text-sm font-semibold text-ink-200">
-                No result yet
-              </h3>
+              <h3 className="text-sm font-semibold text-ink-200">No result yet</h3>
               <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-ink-400">
-                Run a request to see the response, the route that was chosen and
-                the attempts it took. Try a failure simulation to watch the
-                fallback engine recover.
+                Run a request to see the response, the route that was chosen and the
+                attempts it took. Try a failure simulation to watch the fallback engine
+                recover.
               </p>
             </div>
           </Panel>
         ) : (
-          <div
-            className={
-              results.length > 1 ? 'grid gap-5 lg:grid-cols-2' : 'space-y-5'
-            }
-          >
+          <div className={results.length > 1 ? 'grid gap-5 lg:grid-cols-2' : 'space-y-5'}>
             {results.map((result, index) => (
               <ResultPanel
                 key={result.correlationId ?? index}
@@ -314,10 +299,9 @@ export function PlaygroundClient({
 
         {results.length > 1 ? (
           <p className="text-[11px] leading-relaxed text-ink-600">
-            Demonstration comparison using configured demo behaviour. These are
-            not independent model benchmarks, and the figures reflect this
-            workspace&apos;s configured pricing and the demo provider&apos;s
-            simulated latency.
+            Demonstration comparison using configured demo behaviour. These are not
+            independent model benchmarks, and the figures reflect this workspace&apos;s
+            configured pricing and the demo provider&apos;s simulated latency.
           </p>
         ) : null}
       </div>
@@ -325,13 +309,7 @@ export function PlaygroundClient({
   );
 }
 
-function ResultPanel({
-  result,
-  label,
-}: {
-  result: PlaygroundResult;
-  label: string;
-}) {
+function ResultPanel({ result, label }: { result: PlaygroundResult; label: string }) {
   if (result.error) {
     return (
       <Panel className="border-danger-400/30">
@@ -364,14 +342,9 @@ function ResultPanel({
             {result.status?.toLowerCase()}
           </Badge>
           {result.fallbackUsed ? <Badge tone="warning">fallback</Badge> : null}
-          {result.model ? (
-            <Badge tone="primary">{result.model}</Badge>
-          ) : null}
-          {result.strategy ? (
-            <Badge tone="accent">{result.strategy}</Badge>
-          ) : null}
-          {result.structuredValid !== null &&
-          result.structuredValid !== undefined ? (
+          {result.model ? <Badge tone="primary">{result.model}</Badge> : null}
+          {result.strategy ? <Badge tone="accent">{result.strategy}</Badge> : null}
+          {result.structuredValid !== null && result.structuredValid !== undefined ? (
             <Badge tone={result.structuredValid ? 'success' : 'danger'}>
               {result.structuredValid ? 'valid JSON' : 'invalid JSON'}
             </Badge>
@@ -385,10 +358,7 @@ function ResultPanel({
             label="Tokens"
             value={`${result.inputTokens ?? 0} / ${result.outputTokens ?? 0}`}
           />
-          <Metric
-            label="Est. cost"
-            value={formatCost(result.estimatedCost ?? 0)}
-          />
+          <Metric label="Est. cost" value={formatCost(result.estimatedCost ?? 0)} />
         </dl>
 
         {result.content ? (
@@ -421,9 +391,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <dt className="text-[10px] tracking-wide text-ink-600 uppercase">{label}</dt>
-      <dd className="mt-0.5 font-mono text-xs tabular-nums text-ink-50">
-        {value}
-      </dd>
+      <dd className="mt-0.5 font-mono text-xs tabular-nums text-ink-50">{value}</dd>
     </div>
   );
 }

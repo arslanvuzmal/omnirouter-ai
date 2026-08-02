@@ -18,21 +18,13 @@ import { formatRelative } from '@/lib/utils';
 
 export const metadata: Metadata = { title: 'Team' };
 
-const ROLE_ORDER: WorkspaceRole[] = [
-  'OWNER',
-  'ADMIN',
-  'DEVELOPER',
-  'ANALYST',
-  'VIEWER',
-];
+const ROLE_ORDER: WorkspaceRole[] = ['OWNER', 'ADMIN', 'DEVELOPER', 'ANALYST', 'VIEWER'];
 
 const ROLE_SUMMARY: Record<WorkspaceRole, string> = {
-  OWNER:
-    'Everything an admin can do, plus workspace deletion and ownership transfer.',
+  OWNER: 'Everything an admin can do, plus workspace deletion and ownership transfer.',
   ADMIN:
     'Applications, providers, policies, production keys, quotas, members and audit access.',
-  DEVELOPER:
-    'Playground, prompts, development keys, request logs and policy testing.',
+  DEVELOPER: 'Playground, prompts, development keys, request logs and policy testing.',
   ANALYST: 'Analytics, request metadata and exports. No credential access.',
   VIEWER: 'Read-only. Cannot create secrets or change configuration.',
 };

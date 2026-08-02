@@ -57,8 +57,8 @@ export function MarketingFooter() {
           <div className="max-w-sm">
             <OmniRouterWordmark />
             <p className="mt-3 text-xs leading-relaxed text-ink-600">
-              An AI operations control plane: connect providers, define routing
-              policies, and inspect every request your applications make.
+              An AI operations control plane: connect providers, define routing policies,
+              and inspect every request your applications make.
             </p>
           </div>
 
@@ -100,8 +100,7 @@ export function MarketingFooter() {
         <div className="mt-8 flex flex-col gap-2 border-t border-base-800 pt-6 text-[11px] text-ink-600 sm:flex-row sm:items-center sm:justify-between">
           <p>OmniRouter AI — a portfolio project by Arslan Vuzmal Lone.</p>
           <p>
-            Demonstration deployment. Figures shown are derived from seeded
-            demo data.
+            Demonstration deployment. Figures shown are derived from seeded demo data.
           </p>
         </div>
       </div>

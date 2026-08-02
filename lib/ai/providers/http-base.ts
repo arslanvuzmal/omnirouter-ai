@@ -1,14 +1,6 @@
-import {
-  buildNormalisedError,
-  categoriseHttpStatus,
-  categoriseThrown,
-} from '../errors';
+import { buildNormalisedError, categoriseHttpStatus, categoriseThrown } from '../errors';
 import { estimateTokens } from '../tokens';
-import type {
-  Capability,
-  NormalisedError,
-  ProviderContext,
-} from '../types';
+import type { Capability, NormalisedError, ProviderContext } from '../types';
 import { ProviderError } from '../types';
 
 /**
@@ -45,9 +37,7 @@ function parseRetryAfter(header: string | null): number | undefined {
   return undefined;
 }
 
-export async function postJson(
-  options: HttpCallOptions,
-): Promise<HttpCallResult> {
+export async function postJson(options: HttpCallOptions): Promise<HttpCallResult> {
   const { url, headers, body, context } = options;
 
   const controller = new AbortController();
@@ -90,8 +80,7 @@ export async function postJson(
       json,
       latencyMs,
       providerRequestId:
-        response.headers.get('x-request-id') ??
-        response.headers.get('request-id'),
+        response.headers.get('x-request-id') ?? response.headers.get('request-id'),
     };
   } catch (error) {
     if (error instanceof ProviderError) throw error;

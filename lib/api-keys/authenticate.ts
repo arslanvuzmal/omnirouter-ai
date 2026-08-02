@@ -28,8 +28,7 @@ export interface AuthenticatedKey {
 }
 
 export type KeyAuthResult =
-  | { ok: true; key: AuthenticatedKey }
-  | { ok: false; message: string };
+  { ok: true; key: AuthenticatedKey } | { ok: false; message: string };
 
 const GENERIC_REJECTION = 'The supplied API key is not valid.';
 

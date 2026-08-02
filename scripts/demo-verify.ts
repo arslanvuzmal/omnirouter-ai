@@ -63,11 +63,7 @@ async function main(): Promise<void> {
   const hashesLookRight = keyRows.every(
     (row) => /^[a-f0-9]{64}$/.test(row.keyHash) && row.keyPrefix.length <= 20,
   );
-  record(
-    'api keys stored as sha-256',
-    hashesLookRight,
-    `${keyRows.length} keys checked`,
-  );
+  record('api keys stored as sha-256', hashesLookRight, `${keyRows.length} keys checked`);
 
   const plaintextLeak = keyRows.some((row) => row.keyHash.startsWith('omr_'));
   record('no plaintext key stored', !plaintextLeak, 'keyHash never holds a raw key');

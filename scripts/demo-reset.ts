@@ -43,7 +43,9 @@ async function main(): Promise<void> {
   });
   console.log(`Removed ${count} demo accounts.`);
 
-  console.log('\nRun `npm run demo:seed` (or `npx tsx prisma/seed/index.ts`) to rebuild.');
+  console.log(
+    '\nRun `npm run demo:seed` (or `npx tsx prisma/seed/index.ts`) to rebuild.',
+  );
 }
 
 main()

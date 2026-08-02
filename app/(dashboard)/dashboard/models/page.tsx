@@ -44,11 +44,10 @@ export default async function ModelsPage() {
         {hasDemoModels ? (
           <div className="rounded-lg border border-warning-400/25 bg-warning-400/8 px-4 py-3">
             <p className="text-xs leading-relaxed text-warning-400">
-              <strong className="font-semibold">{DEMO_MODEL_DISCLAIMER}.</strong>{' '}
-              Astra Fast, Astra Pro, Nimbus Reasoning and Local Ember are
-              fictional models that run in-process. They are not proxies for, and
-              make no claim about, any real commercial model. Their prices and
-              latencies are simulated.
+              <strong className="font-semibold">{DEMO_MODEL_DISCLAIMER}.</strong> Astra
+              Fast, Astra Pro, Nimbus Reasoning and Local Ember are fictional models that
+              run in-process. They are not proxies for, and make no claim about, any real
+              commercial model. Their prices and latencies are simulated.
             </p>
           </div>
         ) : null}
@@ -81,9 +80,7 @@ export default async function ModelsPage() {
               {models.map((model) => (
                 <tr key={model.id}>
                   <Td>
-                    <span className="block text-xs text-ink-50">
-                      {model.displayName}
-                    </span>
+                    <span className="block text-xs text-ink-50">{model.displayName}</span>
                     <span className="block font-mono text-[10px] text-ink-600">
                       {model.modelId}
                     </span>
@@ -104,12 +101,8 @@ export default async function ModelsPage() {
                       {model.supportsStructured ? (
                         <Badge tone="neutral">structured</Badge>
                       ) : null}
-                      {model.supportsVision ? (
-                        <Badge tone="neutral">vision</Badge>
-                      ) : null}
-                      {model.supportsToolUse ? (
-                        <Badge tone="neutral">tools</Badge>
-                      ) : null}
+                      {model.supportsVision ? <Badge tone="neutral">vision</Badge> : null}
+                      {model.supportsToolUse ? <Badge tone="neutral">tools</Badge> : null}
                     </div>
                   </Td>
                   <Td className="text-right font-mono text-xs tabular-nums text-ink-400">

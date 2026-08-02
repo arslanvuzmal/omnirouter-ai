@@ -59,8 +59,8 @@ export default async function StatusPage() {
           Deployment status
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-400">
-          Measured at page load. This is a demonstration deployment and carries
-          no availability commitment.
+          Measured at page load. This is a demonstration deployment and carries no
+          availability commitment.
         </p>
       </header>
 
@@ -138,9 +138,8 @@ export default async function StatusPage() {
       </Panel>
 
       <p className="mt-6 text-[11px] leading-relaxed text-ink-600">
-        This page reports only what it can measure at request time. It does not
-        claim an uptime percentage, and no independent monitoring is attached to
-        this deployment.
+        This page reports only what it can measure at request time. It does not claim an
+        uptime percentage, and no independent monitoring is attached to this deployment.
       </p>
     </div>
   );

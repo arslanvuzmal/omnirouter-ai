@@ -62,9 +62,7 @@ export function LoginForm({ demoMode }: { demoMode: boolean }) {
                 className="mt-0.5 h-4 w-4 shrink-0 text-danger-400"
                 aria-hidden="true"
               />
-              <p className="text-xs leading-relaxed text-danger-400">
-                {state.error}
-              </p>
+              <p className="text-xs leading-relaxed text-danger-400">{state.error}</p>
             </div>
           ) : null}
 
@@ -102,9 +100,8 @@ export function LoginForm({ demoMode }: { demoMode: boolean }) {
         <Panel className="p-5">
           <h2 className="text-xs font-semibold text-ink-50">Demo accounts</h2>
           <p className="mt-1 text-[11px] leading-relaxed text-ink-400">
-            Each role sees a different subset of the product. Selecting one fills
-            the form; permissions are enforced on the server, not by hiding
-            buttons.
+            Each role sees a different subset of the product. Selecting one fills the
+            form; permissions are enforced on the server, not by hiding buttons.
           </p>
 
           <ul className="mt-3 space-y-1.5">

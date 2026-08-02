@@ -26,10 +26,7 @@ function SubmitButton() {
 }
 
 export function RegisterForm() {
-  const [state, formAction] = useActionState<ActionState, FormData>(
-    registerAction,
-    {},
-  );
+  const [state, formAction] = useActionState<ActionState, FormData>(registerAction, {});
 
   return (
     <Panel className="p-6">

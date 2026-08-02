@@ -67,15 +67,15 @@ export default function LandingPage() {
             <Badge tone="primary">AI operations control plane</Badge>
 
             <h1 className="mt-5 text-4xl leading-[1.1] font-semibold tracking-tight text-ink-50 sm:text-5xl">
-              One secure control plane for your AI models, applications,
-              routing policies, usage and failures.
+              One secure control plane for your AI models, applications, routing policies,
+              usage and failures.
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-400">
-              OmniRouter sits between your product and every AI provider you
-              use. It decides which model handles each request, recovers when a
-              provider fails, and keeps a readable record of what happened —
-              so an outage becomes a line in a trace instead of an incident.
+              OmniRouter sits between your product and every AI provider you use. It
+              decides which model handles each request, recovers when a provider fails,
+              and keeps a readable record of what happened — so an outage becomes a line
+              in a trace instead of an incident.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -95,9 +95,8 @@ export default function LandingPage() {
             </div>
 
             <p className="mt-4 text-xs text-ink-600">
-              The demonstration runs on a deterministic in-process provider. No
-              external API key is required, and no request leaves the
-              deployment.
+              The demonstration runs on a deterministic in-process provider. No external
+              API key is required, and no request leaves the deployment.
             </p>
           </div>
         </div>
@@ -112,14 +111,14 @@ export default function LandingPage() {
                 The problem this solves
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-ink-400">
-                A team ships an AI feature against one provider. It works. Then
-                the provider rate-limits at peak, or returns a 500, or triples
-                in price, or a newer model becomes the better fit.
+                A team ships an AI feature against one provider. It works. Then the
+                provider rate-limits at peak, or returns a 500, or triples in price, or a
+                newer model becomes the better fit.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-ink-400">
-                Now the provider call is spread across a dozen files, no one can
-                say what a request actually cost, and adding a second provider
-                means touching every one of them.
+                Now the provider call is spread across a dozen files, no one can say what
+                a request actually cost, and adding a second provider means touching every
+                one of them.
               </p>
             </div>
 
@@ -159,10 +158,7 @@ export default function LandingPage() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((feature) => (
               <Panel key={feature.title} className="p-5">
-                <feature.icon
-                  className="h-5 w-5 text-primary-400"
-                  aria-hidden="true"
-                />
+                <feature.icon className="h-5 w-5 text-primary-400" aria-hidden="true" />
                 <h3 className="mt-3.5 text-sm font-semibold text-ink-50">
                   {feature.title}
                 </h3>
@@ -186,14 +182,13 @@ export default function LandingPage() {
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-ink-400">
                 Most gateways log which model they picked. OmniRouter stores{' '}
-                <em className="text-ink-200 not-italic">why</em> — as structured
-                data attached to the request, including the candidates that were
-                filtered out and the reason each one was dropped.
+                <em className="text-ink-200 not-italic">why</em> — as structured data
+                attached to the request, including the candidates that were filtered out
+                and the reason each one was dropped.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-ink-400">
-                That record survives the policy that produced it, so a decision
-                made last month is still explainable after the policy has been
-                edited.
+                That record survives the policy that produced it, so a decision made last
+                month is still explainable after the policy has been edited.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
@@ -245,10 +240,9 @@ export default function LandingPage() {
               See a provider fail and recover, in sixty seconds
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-ink-400">
-              Client Story Mode walks through creating an application, defining
-              a balanced policy, sending a request, simulating a provider
-              timeout, and watching the fallback succeed — with the trace open
-              the whole time.
+              Client Story Mode walks through creating an application, defining a balanced
+              policy, sending a request, simulating a provider timeout, and watching the
+              fallback succeed — with the trace open the whole time.
             </p>
             <Link
               href="/demo/story"

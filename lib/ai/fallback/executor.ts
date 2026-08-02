@@ -59,10 +59,7 @@ export interface ExecuteOptions {
   /** Classifies a thrown value into the normalised error shape. */
   classify: (candidate: RouteCandidate, error: unknown) => NormalisedError;
   /** Resolves per-candidate call context (credential, base URL, demo faults). */
-  buildContext: (
-    candidate: RouteCandidate,
-    timeoutMs: number,
-  ) => ProviderContext;
+  buildContext: (candidate: RouteCandidate, timeoutMs: number) => ProviderContext;
   sleep?: (ms: number) => Promise<void>;
   now?: () => number;
   random?: () => number;
@@ -100,9 +97,7 @@ export async function executeWithFallback(
     if (!candidate) break;
 
     const isFirstCandidate = candidateIndex === 0;
-    const policyForPrevious = finalError
-      ? retryPolicyFor(finalError.category)
-      : null;
+    const policyForPrevious = finalError ? retryPolicyFor(finalError.category) : null;
 
     // A non-retryable, non-fallbackable failure ends the chain immediately.
     if (policyForPrevious && !policyForPrevious.allowFallback) {
@@ -140,11 +135,7 @@ export async function executeWithFallback(
       const reason = describeReason(isFirstCandidate, retriesUsed, sequence);
 
       try {
-        const response = await options.invoke(
-          candidate,
-          options.request,
-          context,
-        );
+        const response = await options.invoke(candidate, options.request, context);
 
         const cost = estimateCost(response.usage, {
           inputPricePerMillion: candidate.inputPricePerMillion,
@@ -232,12 +223,11 @@ export async function executeWithFallback(
     return {
       response: null,
       attempts,
-      finalError:
-        finalError ?? {
-          category: 'PROVIDER_UNAVAILABLE',
-          message: safeMessageFor('PROVIDER_UNAVAILABLE'),
-          retryable: false,
-        },
+      finalError: finalError ?? {
+        category: 'PROVIDER_UNAVAILABLE',
+        message: safeMessageFor('PROVIDER_UNAVAILABLE'),
+        retryable: false,
+      },
       fallbackUsed: attempts.length > 1,
       totalLatencyMs: now() - startedAt,
     };

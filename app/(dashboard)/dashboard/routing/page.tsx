@@ -75,9 +75,7 @@ export default async function RoutingPage() {
                 <div className="space-y-3 px-5 py-4">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <Badge tone="accent">{policy.strategy}</Badge>
-                    <Badge
-                      tone={policy.status === 'ACTIVE' ? 'success' : 'neutral'}
-                    >
+                    <Badge tone={policy.status === 'ACTIVE' ? 'success' : 'neutral'}>
                       {policy.status.toLowerCase()}
                     </Badge>
                     <Badge tone="neutral">v{policy.version}</Badge>
@@ -118,9 +116,7 @@ export default async function RoutingPage() {
                   <dl className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-ink-600">
                     <div className="flex gap-1">
                       <dt>Max attempts</dt>
-                      <dd className="font-mono text-ink-400">
-                        {policy.maxAttempts}
-                      </dd>
+                      <dd className="font-mono text-ink-400">{policy.maxAttempts}</dd>
                     </div>
                     <div className="flex gap-1">
                       <dt>Attempt timeout</dt>
@@ -161,9 +157,7 @@ export default async function RoutingPage() {
                 <Td>
                   <Badge tone="accent">{strategy}</Badge>
                 </Td>
-                <Td className="text-xs leading-relaxed text-ink-400">
-                  {summary}
-                </Td>
+                <Td className="text-xs leading-relaxed text-ink-400">{summary}</Td>
               </tr>
             ))}
           </Table>

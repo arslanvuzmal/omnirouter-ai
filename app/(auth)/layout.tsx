@@ -2,11 +2,7 @@ import Link from 'next/link';
 
 import { OmniRouterWordmark } from '@/components/brand/wordmark';
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="surface-glow relative flex min-h-screen flex-col">
       <div className="surface-grid absolute inset-0 opacity-30" aria-hidden="true" />

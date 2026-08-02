@@ -32,8 +32,7 @@ const PER_MESSAGE_OVERHEAD = 4;
 
 export function estimateMessagesTokens(messages: ChatMessage[]): number {
   return messages.reduce(
-    (total, message) =>
-      total + estimateTokens(message.content) + PER_MESSAGE_OVERHEAD,
+    (total, message) => total + estimateTokens(message.content) + PER_MESSAGE_OVERHEAD,
     0,
   );
 }

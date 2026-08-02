@@ -127,12 +127,7 @@ export class OpenAiCompatibleProvider implements ProviderAdapter {
   }
 
   protected inferCapabilities(modelId: string): Capability[] {
-    const all: Capability[] = [
-      'streaming',
-      'structured_output',
-      'vision',
-      'tool_use',
-    ];
+    const all: Capability[] = ['streaming', 'structured_output', 'vision', 'tool_use'];
     return all.filter((capability) =>
       capabilityFromPatterns(modelId, capability, this.config.capabilityPatterns),
     );
@@ -307,10 +302,6 @@ export class OpenAiCompatibleProvider implements ProviderAdapter {
   }
 
   supportsCapability(modelId: string, capability: Capability): boolean {
-    return capabilityFromPatterns(
-      modelId,
-      capability,
-      this.config.capabilityPatterns,
-    );
+    return capabilityFromPatterns(modelId, capability, this.config.capabilityPatterns);
   }
 }

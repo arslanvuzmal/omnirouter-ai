@@ -60,10 +60,7 @@ export async function hashPassword(password: string): Promise<string> {
   ].join('$');
 }
 
-export async function verifyPassword(
-  password: string,
-  stored: string,
-): Promise<boolean> {
+export async function verifyPassword(password: string, stored: string): Promise<boolean> {
   const parts = stored.split('$');
 
   if (parts.length !== 6 || parts[0] !== 'scrypt') return false;
@@ -86,9 +83,7 @@ export async function verifyPassword(
       maxmem: 128 * N * r * 2,
     });
 
-    return (
-      derived.length === expected.length && timingSafeEqual(derived, expected)
-    );
+    return derived.length === expected.length && timingSafeEqual(derived, expected);
   } catch {
     return false;
   }

@@ -84,11 +84,7 @@ export default async function ApplicationDetailPage({
       <PageHeader
         title={application.name}
         description={application.description ?? undefined}
-        meta={
-          <span className="font-mono text-xs text-ink-600">
-            {application.slug}
-          </span>
-        }
+        meta={<span className="font-mono text-xs text-ink-600">{application.slug}</span>}
         actions={
           <Link href="/dashboard/applications">
             <Button variant="secondary" size="sm">
@@ -108,10 +104,7 @@ export default async function ApplicationDetailPage({
             tone={metrics.successRate >= 0.95 ? 'success' : 'warning'}
           />
           <Stat label="P95 latency" value={formatLatency(metrics.p95LatencyMs)} />
-          <Stat
-            label="Estimated cost"
-            value={formatCost(metrics.estimatedCost)}
-          />
+          <Stat label="Estimated cost" value={formatCost(metrics.estimatedCost)} />
         </dl>
 
         <div className="grid gap-5 lg:grid-cols-2">
@@ -174,9 +167,7 @@ export default async function ApplicationDetailPage({
                       <EnvironmentBadge type={key.environment.type} />
                     </Td>
                     <Td>
-                      <Badge
-                        tone={key.status === 'ACTIVE' ? 'success' : 'danger'}
-                      >
+                      <Badge tone={key.status === 'ACTIVE' ? 'success' : 'danger'}>
                         {key.status.toLowerCase()}
                       </Badge>
                     </Td>
@@ -224,9 +215,7 @@ export default async function ApplicationDetailPage({
                   <Td>
                     <EnvironmentBadge type={request.environment.type} />
                   </Td>
-                  <Td className="font-mono text-xs">
-                    {request.resolvedModel ?? '—'}
-                  </Td>
+                  <Td className="font-mono text-xs">{request.resolvedModel ?? '—'}</Td>
                   <Td className="text-right font-mono text-xs tabular-nums">
                     {formatLatency(request.totalLatencyMs)}
                   </Td>

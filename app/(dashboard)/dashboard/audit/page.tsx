@@ -45,11 +45,11 @@ export default async function AuditPage() {
         <div className="flex items-start gap-3 rounded-lg border border-base-700 bg-base-900/60 px-4 py-3">
           <Lock className="mt-0.5 h-4 w-4 shrink-0 text-ink-400" aria-hidden="true" />
           <p className="text-xs leading-relaxed text-ink-400">
-            The application has no code path that updates or deletes an audit
-            entry. Credentials, key hashes and connection strings are replaced
-            with <code className="font-mono text-ink-200">[redacted]</code> before
-            a state snapshot is stored, so rotating a secret cannot leave the old
-            value behind in this table.
+            The application has no code path that updates or deletes an audit entry.
+            Credentials, key hashes and connection strings are replaced with{' '}
+            <code className="font-mono text-ink-200">[redacted]</code> before a state
+            snapshot is stored, so rotating a secret cannot leave the old value behind in
+            this table.
           </p>
         </div>
 
@@ -83,9 +83,7 @@ export default async function AuditPage() {
 
                 return (
                   <tr key={entry.id}>
-                    <Td className="text-xs text-ink-50">
-                      {labelFor(entry.action)}
-                    </Td>
+                    <Td className="text-xs text-ink-50">{labelFor(entry.action)}</Td>
                     <Td className="text-[11px] text-ink-400">
                       {entry.actor?.name ?? entry.actorLabel}
                     </Td>
@@ -94,9 +92,7 @@ export default async function AuditPage() {
                         {entry.resourceType.replace(/_/g, ' ')}
                       </Badge>
                     </Td>
-                    <Td className="text-[11px] text-ink-400">
-                      {state?.detail ?? '—'}
-                    </Td>
+                    <Td className="text-[11px] text-ink-400">{state?.detail ?? '—'}</Td>
                     <Td
                       className="text-xs whitespace-nowrap text-ink-400"
                       title={formatDateTime(entry.createdAt)}

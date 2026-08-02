@@ -10,20 +10,16 @@ const serverSchema = z.object({
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
   DIRECT_URL: z.string().optional(),
   AUTH_SECRET: z.string().min(32, 'AUTH_SECRET must be at least 32 characters'),
-  ENCRYPTION_KEY: z
-    .string()
-    .refine((value) => {
-      try {
-        return Buffer.from(value, 'base64').length === 32;
-      } catch {
-        return false;
-      }
-    }, 'ENCRYPTION_KEY must be exactly 32 bytes, base64-encoded'),
+  ENCRYPTION_KEY: z.string().refine((value) => {
+    try {
+      return Buffer.from(value, 'base64').length === 32;
+    } catch {
+      return false;
+    }
+  }, 'ENCRYPTION_KEY must be exactly 32 bytes, base64-encoded'),
   INTERNAL_API_SECRET: z.string().min(16).optional(),
   APP_URL: z.string().url().default('http://localhost:3000'),
-  NODE_ENV: z
-    .enum(['development', 'test', 'production'])
-    .default('development'),
+  NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   DEMO_MODE: z
     .string()
     .optional()

@@ -44,9 +44,7 @@ export interface WorkspaceContext {
  * When no id is supplied the first membership is used, which makes the common
  * single-workspace case work without a selector.
  */
-export async function requireWorkspace(
-  workspaceId?: string,
-): Promise<WorkspaceContext> {
+export async function requireWorkspace(workspaceId?: string): Promise<WorkspaceContext> {
   const session = await requireSession();
 
   if (session.memberships.length === 0) {
@@ -104,10 +102,7 @@ export class ProtectedWorkspaceError extends Error {
   }
 }
 
-export function assertNotProtected(
-  membership: SessionMembership,
-  action: string,
-): void {
+export function assertNotProtected(membership: SessionMembership, action: string): void {
   if (membership.isProtected) {
     throw new ProtectedWorkspaceError(action);
   }

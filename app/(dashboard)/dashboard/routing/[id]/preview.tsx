@@ -4,13 +4,7 @@ import { Sparkles } from 'lucide-react';
 import { useState, useTransition } from 'react';
 
 import { RouteExplanationView } from '@/components/requests/trace';
-import {
-  Button,
-  Field,
-  Panel,
-  PanelHeader,
-  Textarea,
-} from '@/components/ui/primitives';
+import { Button, Field, Panel, PanelHeader, Textarea } from '@/components/ui/primitives';
 import type { RouteExplanation } from '@/lib/ai/routing/types';
 
 import { previewRouteAction } from './actions';
@@ -92,8 +86,8 @@ export function PolicyPreview({
             <RouteExplanationView explanation={explanation} />
           ) : (
             <p className="px-5 py-8 text-center text-xs text-ink-600">
-              Run a preview to see the candidates, the rejections and the
-              selection reason.
+              Run a preview to see the candidates, the rejections and the selection
+              reason.
             </p>
           )}
         </div>

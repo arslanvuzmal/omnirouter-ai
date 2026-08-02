@@ -24,21 +24,21 @@ Concepts such as "provider fallback", "weighted routing", "request tracing" and 
 
 ## 1. BerriAI/litellm
 
-| Field | Value |
-| --- | --- |
-| Repository | `BerriAI/litellm` |
-| Description | AI gateway; call 100+ LLM APIs in OpenAI or native format, with cost tracking, guardrails, load balancing and logging |
-| Licence | **MIT**, with a carve-out: content under an `enterprise/` directory is governed by a separate licence in `enterprise/LICENSE` |
-| Default branch | `litellm_internal_staging` |
-| Primary language | Python (Rust core) |
-| Documentation inspected | `https://docs.litellm.ai/docs/`, `https://docs.litellm.ai/docs/routing` |
-| Files/pages inspected | Repository metadata, root `LICENSE`, public routing documentation |
-| Date inspected | 31 July 2026 |
+| Field                   | Value                                                                                                                         |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Repository              | `BerriAI/litellm`                                                                                                             |
+| Description             | AI gateway; call 100+ LLM APIs in OpenAI or native format, with cost tracking, guardrails, load balancing and logging         |
+| Licence                 | **MIT**, with a carve-out: content under an `enterprise/` directory is governed by a separate licence in `enterprise/LICENSE` |
+| Default branch          | `litellm_internal_staging`                                                                                                    |
+| Primary language        | Python (Rust core)                                                                                                            |
+| Documentation inspected | `https://docs.litellm.ai/docs/`, `https://docs.litellm.ai/docs/routing`                                                       |
+| Files/pages inspected   | Repository metadata, root `LICENSE`, public routing documentation                                                             |
+| Date inspected          | 31 July 2026                                                                                                                  |
 
 ### Architectural lessons taken
 
 - **A single normalised request/response envelope is the load-bearing abstraction.** Once every provider is coerced into one request shape and one response shape, routing, fallback, cost accounting and logging all become provider-agnostic. This is the single most valuable idea in the category.
-- **A model group is not a model.** Routing operates over a *set of deployable targets* that share a logical name. This separation is what makes load balancing and fallback expressible at all.
+- **A model group is not a model.** Routing operates over a _set of deployable targets_ that share a logical name. This separation is what makes load balancing and fallback expressible at all.
 - **Deployment cooldowns.** LiteLLM cools down a deployment after a failure threshold (documented: >50% failures in the current minute, or specific status codes such as 429/401/404, default 5s) rather than banning it permanently. Health is a decaying signal, not a boolean.
 - **Ordered fallback tiers.** An `order` parameter groups deployments into tiers that cascade on failure.
 - **Error-class-aware retry.** Not every failure deserves a retry; authentication failures in particular should not be hammered.
@@ -65,15 +65,15 @@ MIT permits commercial reuse with attribution. Because **no code was taken**, no
 
 ## 2. Portkey-AI/gateway
 
-| Field | Value |
-| --- | --- |
-| Repository | `Portkey-AI/gateway` |
-| Description | AI gateway with integrated guardrails; routes to many LLMs behind one API |
-| Licence | **MIT** |
-| Default branch | `main` |
-| Primary language | TypeScript |
+| Field                 | Value                                                                             |
+| --------------------- | --------------------------------------------------------------------------------- |
+| Repository            | `Portkey-AI/gateway`                                                              |
+| Description           | AI gateway with integrated guardrails; routes to many LLMs behind one API         |
+| Licence               | **MIT**                                                                           |
+| Default branch        | `main`                                                                            |
+| Primary language      | TypeScript                                                                        |
 | Files/pages inspected | Repository metadata, public `README.md`, `https://portkey.ai/features/ai-gateway` |
-| Date inspected | 31 July 2026 |
+| Date inspected        | 31 July 2026                                                                      |
 
 ### Architectural lessons taken
 
@@ -93,21 +93,21 @@ MIT permits commercial reuse with attribution. Because **no code was taken**, no
 
 ### Licensing note
 
-MIT. No code was used, so no attribution obligation arises. The `config` shape shown in their README was read to understand the *concept* of declarative policy; OmniRouter's `RoutingPolicy`/`RoutingRule` schema and its `RouteExplanation` object were designed independently and share no field names by intent.
+MIT. No code was used, so no attribution obligation arises. The `config` shape shown in their README was read to understand the _concept_ of declarative policy; OmniRouter's `RoutingPolicy`/`RoutingRule` schema and its `RouteExplanation` object were designed independently and share no field names by intent.
 
 ---
 
 ## 3. langfuse/langfuse
 
-| Field | Value |
-| --- | --- |
-| Repository | `langfuse/langfuse` |
-| Description | Open-source AI engineering platform: evals, observability, metrics, prompt management, playground, datasets |
-| Licence | **MIT**, with a commercial carve-out: `ee/`, `web/src/ee/` and `worker/src/ee/` are governed by `ee/LICENSE` |
-| Default branch | `main` |
-| Primary language | TypeScript |
-| Files/pages inspected | Repository metadata, root `LICENSE`, `https://langfuse.com` |
-| Date inspected | 31 July 2026 |
+| Field                 | Value                                                                                                        |
+| --------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Repository            | `langfuse/langfuse`                                                                                          |
+| Description           | Open-source AI engineering platform: evals, observability, metrics, prompt management, playground, datasets  |
+| Licence               | **MIT**, with a commercial carve-out: `ee/`, `web/src/ee/` and `worker/src/ee/` are governed by `ee/LICENSE` |
+| Default branch        | `main`                                                                                                       |
+| Primary language      | TypeScript                                                                                                   |
+| Files/pages inspected | Repository metadata, root `LICENSE`, `https://langfuse.com`                                                  |
+| Date inspected        | 31 July 2026                                                                                                 |
 
 ### Architectural lessons taken
 
@@ -131,15 +131,15 @@ The MIT base permits reuse; the `ee/` directories do not. **No code from either 
 
 ## 4. Helicone/helicone
 
-| Field | Value |
-| --- | --- |
-| Repository | `Helicone/helicone` |
-| Description | Open-source LLM observability platform; one line of code to monitor, evaluate and experiment |
-| Licence | **Apache License 2.0** |
-| Default branch | `main` |
-| Primary language | TypeScript |
-| Files/pages inspected | Repository metadata, licence identifier, `https://www.helicone.ai` |
-| Date inspected | 31 July 2026 |
+| Field                 | Value                                                                                        |
+| --------------------- | -------------------------------------------------------------------------------------------- |
+| Repository            | `Helicone/helicone`                                                                          |
+| Description           | Open-source LLM observability platform; one line of code to monitor, evaluate and experiment |
+| Licence               | **Apache License 2.0**                                                                       |
+| Default branch        | `main`                                                                                       |
+| Primary language      | TypeScript                                                                                   |
+| Files/pages inspected | Repository metadata, licence identifier, `https://www.helicone.ai`                           |
+| Date inspected        | 31 July 2026                                                                                 |
 
 ### Architectural lessons taken
 
@@ -152,7 +152,7 @@ The MIT base permits reuse; the `ee/` directories do not. **No code from either 
 ### Deliberately excluded
 
 - Their proxy-first ingestion model and edge-worker deployment.
-- Their caching implementation. Semantic caching is listed in OmniRouter's roadmap as explicitly *not built*, rather than claimed.
+- Their caching implementation. Semantic caching is listed in OmniRouter's roadmap as explicitly _not built_, rather than claimed.
 - Session replay and experiment tooling.
 - Their pricing/billing surface.
 
@@ -164,15 +164,15 @@ Apache-2.0 additionally requires preservation of NOTICE files and states patent 
 
 ## 5. vercel/chatbot (`vercel/ai-chatbot`)
 
-| Field | Value |
-| --- | --- |
-| Repository | `vercel/chatbot` |
-| Description | Full-featured, hackable Next.js AI chatbot built by Vercel |
-| Licence | **Apache License 2.0**, © 2024 Vercel, Inc. |
-| Default branch | `main` |
-| Primary language | TypeScript |
+| Field                 | Value                                                             |
+| --------------------- | ----------------------------------------------------------------- |
+| Repository            | `vercel/chatbot`                                                  |
+| Description           | Full-featured, hackable Next.js AI chatbot built by Vercel        |
+| Licence               | **Apache License 2.0**, © 2024 Vercel, Inc.                       |
+| Default branch        | `main`                                                            |
+| Primary language      | TypeScript                                                        |
 | Files/pages inspected | Repository metadata, root `LICENSE`, `https://chatbot.ai-sdk.dev` |
-| Date inspected | 31 July 2026 |
+| Date inspected        | 31 July 2026                                                      |
 
 ### Architectural lessons taken
 
@@ -197,16 +197,16 @@ Apache-2.0. No code, component, style or configuration was copied. OmniRouter's 
 
 ## How OmniRouter AI remains original
 
-| Dimension | Position |
-| --- | --- |
-| **Source code** | 100% independently written for this repository. No file originates from a reviewed project. |
-| **Product concept** | An *AI operations control plane* for a business, not a proxy (LiteLLM/Portkey), not an observability SDK (Langfuse/Helicone), not a chat app (vercel/chatbot). The unit of work is a **business application with a routing policy**, not an API call. |
-| **Data model** | 21 independently designed entities. `Request` → `RequestAttempt` with a persisted `RouteExplanation` per request is the schema's distinguishing feature. |
-| **Routing** | Eight named strategies, each emitting a structured, persisted, human-readable explanation object listing candidates, **rejected** candidates with reasons, and a score breakdown. Explainability as a stored artefact — rather than a runtime log — is the primary original contribution. |
-| **Failure handling** | An 11-category error taxonomy driving per-category retry policy, with `SAFETY_REFUSAL` treated as non-bypassable by default. |
-| **Demo capability** | A deterministic in-process demo provider with fictional models (Astra Fast, Astra Pro, Nimbus Reasoning, Local Ember) and injectable faults, so the product is fully demonstrable with **zero** external credentials. None of the reviewed projects treats "works with no API key" as a first-class product requirement. |
-| **Naming** | "OmniRouter AI", all model names, all strategy names, all table names and all UI copy are original to this project. |
-| **Visual identity** | An original dark design system (charcoal base, restrained cyan primary, muted violet secondary) built from scratch. |
+| Dimension            | Position                                                                                                                                                                                                                                                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Source code**      | 100% independently written for this repository. No file originates from a reviewed project.                                                                                                                                                                                                                              |
+| **Product concept**  | An _AI operations control plane_ for a business, not a proxy (LiteLLM/Portkey), not an observability SDK (Langfuse/Helicone), not a chat app (vercel/chatbot). The unit of work is a **business application with a routing policy**, not an API call.                                                                    |
+| **Data model**       | 21 independently designed entities. `Request` → `RequestAttempt` with a persisted `RouteExplanation` per request is the schema's distinguishing feature.                                                                                                                                                                 |
+| **Routing**          | Eight named strategies, each emitting a structured, persisted, human-readable explanation object listing candidates, **rejected** candidates with reasons, and a score breakdown. Explainability as a stored artefact — rather than a runtime log — is the primary original contribution.                                |
+| **Failure handling** | An 11-category error taxonomy driving per-category retry policy, with `SAFETY_REFUSAL` treated as non-bypassable by default.                                                                                                                                                                                             |
+| **Demo capability**  | A deterministic in-process demo provider with fictional models (Astra Fast, Astra Pro, Nimbus Reasoning, Local Ember) and injectable faults, so the product is fully demonstrable with **zero** external credentials. None of the reviewed projects treats "works with no API key" as a first-class product requirement. |
+| **Naming**           | "OmniRouter AI", all model names, all strategy names, all table names and all UI copy are original to this project.                                                                                                                                                                                                      |
+| **Visual identity**  | An original dark design system (charcoal base, restrained cyan primary, muted violet secondary) built from scratch.                                                                                                                                                                                                      |
 
 ---
 
@@ -221,7 +221,7 @@ Apache-2.0. No code, component, style or configuration was copied. OmniRouter's 
 
 ## Summary of the resulting design position
 
-OmniRouter AI takes the *category-standard* ideas — a normalised provider envelope, declarative routing policy, tiered fallback, persisted request traces, versioned prompts, hashed virtual keys — and combines them around one thesis none of the reviewed projects centres on:
+OmniRouter AI takes the _category-standard_ ideas — a normalised provider envelope, declarative routing policy, tiered fallback, persisted request traces, versioned prompts, hashed virtual keys — and combines them around one thesis none of the reviewed projects centres on:
 
 > **A routing decision should be a stored, inspectable, explainable artefact that a non-author can read after the fact and understand — including which candidates were rejected and why.**
 

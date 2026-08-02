@@ -1,5 +1,7 @@
 import { prisma } from '@/lib/database/client';
 
+import { redactState } from './redact';
+
 /**
  * Append-only audit log.
  *
@@ -42,48 +44,9 @@ export type AuditAction =
   | 'auth.logout'
   | 'auth.registered';
 
-/** Keys whose values are replaced before any state snapshot is persisted. */
-const SENSITIVE_KEYS = new Set([
-  'password',
-  'passwordhash',
-  'apikey',
-  'api_key',
-  'keyhash',
-  'plaintext',
-  'credential',
-  'credentialciphertext',
-  'secret',
-  'token',
-  'tokenhash',
-  'authorization',
-  'databaseurl',
-  'database_url',
-  'encryptionkey',
-]);
-
-const REDACTED = '[redacted]';
-
-export function redactState(value: unknown, depth = 0): unknown {
-  if (depth > 6 || value === null || value === undefined) return value;
-
-  if (Array.isArray(value)) {
-    return value.map((entry) => redactState(entry, depth + 1));
-  }
-
-  if (typeof value === 'object') {
-    const output: Record<string, unknown> = {};
-
-    for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
-      output[key] = SENSITIVE_KEYS.has(key.toLowerCase())
-        ? REDACTED
-        : redactState(entry, depth + 1);
-    }
-
-    return output;
-  }
-
-  return value;
-}
+// Redaction lives in ./redact so it can be tested and reused without opening a
+// database connection.
+export { redactState };
 
 export interface AuditInput {
   workspaceId: string;

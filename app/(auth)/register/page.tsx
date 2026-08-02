@@ -19,8 +19,8 @@ export default async function RegisterPage() {
           Create a workspace
         </h1>
         <p className="mt-2 text-sm text-ink-400">
-          You will be the owner. Applications, providers and policies all live
-          inside the workspace.
+          You will be the owner. Applications, providers and policies all live inside the
+          workspace.
         </p>
       </div>
 

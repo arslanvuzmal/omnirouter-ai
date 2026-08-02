@@ -17,9 +17,7 @@ export default async function LoginPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-ink-50">
-          Sign in
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-ink-50">Sign in</h1>
         <p className="mt-2 text-sm text-ink-400">
           Access your workspace, routing policies and request traces.
         </p>

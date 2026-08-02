@@ -48,12 +48,7 @@ export function OmniRouterMark({
       {/* The control plane */}
       <circle cx="16" cy="16" r="4.25" stroke="currentColor" strokeWidth="2" />
       {/* Outbound path */}
-      <path
-        d="M20.5 16H28"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
+      <path d="M20.5 16H28" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       <circle cx="28" cy="16" r="1.75" fill="currentColor" />
     </svg>
   );

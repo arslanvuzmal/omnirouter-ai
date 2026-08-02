@@ -129,10 +129,7 @@ const ROLE_PERMISSIONS: Record<WorkspaceRole, ReadonlySet<Permission>> = {
   VIEWER: new Set(VIEWER),
 };
 
-export function roleHasPermission(
-  role: WorkspaceRole,
-  permission: Permission,
-): boolean {
+export function roleHasPermission(role: WorkspaceRole, permission: Permission): boolean {
   return ROLE_PERMISSIONS[role].has(permission);
 }
 
@@ -153,10 +150,7 @@ export class PermissionDeniedError extends Error {
   }
 }
 
-export function assertPermission(
-  role: WorkspaceRole,
-  permission: Permission,
-): void {
+export function assertPermission(role: WorkspaceRole, permission: Permission): void {
   if (!roleHasPermission(role, permission)) {
     throw new PermissionDeniedError(role, permission);
   }

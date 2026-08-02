@@ -1,9 +1,12 @@
-import { FlatCompat } from '@eslint/eslintrc';
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 import prettier from 'eslint-config-prettier';
 import tseslint from 'typescript-eslint';
 
-const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
-
+/**
+ * eslint-config-next 16 ships flat configs directly, so it is imported rather
+ * than adapted through FlatCompat — the compatibility shim cannot serialise
+ * Next's plugin graph under ESLint 10 and throws on a circular reference.
+ */
 export default tseslint.config(
   {
     ignores: [
@@ -12,12 +15,13 @@ export default tseslint.config(
       'out/**',
       'coverage/**',
       'lib/database/generated/**',
+      'prisma/migrations/**',
       'playwright-report/**',
       'test-results/**',
       'portfolio/**',
     ],
   },
-  ...compat.extends('next/core-web-vitals'),
+  ...nextCoreWebVitals,
   ...tseslint.configs.recommended,
   {
     rules: {
@@ -31,7 +35,8 @@ export default tseslint.config(
     },
   },
   {
-    files: ['scripts/**/*.ts', 'prisma/**/*.ts', 'tests/**/*.ts'],
+    // Scripts and seeds are operator tools; console output is their interface.
+    files: ['scripts/**/*.{ts,mjs}', 'prisma/**/*.ts', 'tests/**/*.ts'],
     rules: { 'no-console': 'off' },
   },
   prettier,

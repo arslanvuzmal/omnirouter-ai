@@ -4,12 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { PageBody, PageHeader } from '@/components/dashboard/shell';
-import {
-  Badge,
-  Button,
-  Panel,
-  PanelHeader,
-} from '@/components/ui/primitives';
+import { Badge, Button, Panel, PanelHeader } from '@/components/ui/primitives';
 import { requireWorkspace } from '@/lib/auth/guard';
 import { prisma } from '@/lib/database/client';
 import { formatDateTime } from '@/lib/utils';
@@ -48,9 +43,9 @@ export default async function PromptDetailPage({
 
       <PageBody>
         <p className="text-xs leading-relaxed text-ink-400">
-          Every version below is retained. Rolling back moves the active pointer
-          rather than editing history, so a request served last month can still
-          be explained against the exact text that produced it.
+          Every version below is retained. Rolling back moves the active pointer rather
+          than editing history, so a request served last month can still be explained
+          against the exact text that produced it.
         </p>
 
         <div className="space-y-4">

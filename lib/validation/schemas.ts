@@ -69,8 +69,7 @@ export const chatCompletionSchema = z
   })
   .refine(
     (value) =>
-      value.messages.reduce((sum, m) => sum + m.content.length, 0) <=
-      MAX_TOTAL_CHARS,
+      value.messages.reduce((sum, m) => sum + m.content.length, 0) <= MAX_TOTAL_CHARS,
     { message: `Total message content exceeds ${MAX_TOTAL_CHARS} characters.` },
   );
 

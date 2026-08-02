@@ -35,8 +35,7 @@ export default async function StoryPage() {
           Demonstration data is not seeded
         </h1>
         <p className="mt-3 text-sm text-ink-400">
-          Run the demo seed to populate the workspace this walkthrough reads
-          from.
+          Run the demo seed to populate the workspace this walkthrough reads from.
         </p>
       </main>
     );
@@ -122,9 +121,9 @@ export default async function StoryPage() {
             A provider fails. Your product does not.
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-400">
-            Six steps, about a minute. Every figure below is read from real
-            requests this deployment executed through its own gateway — not from
-            a script or a screenshot.
+            Six steps, about a minute. Every figure below is read from real requests this
+            deployment executed through its own gateway — not from a script or a
+            screenshot.
           </p>
         </div>
 
@@ -139,22 +138,20 @@ export default async function StoryPage() {
       <footer className="border-t border-base-800 px-5 py-8">
         <div className="mx-auto max-w-5xl">
           <Panel className="p-6">
-            <h2 className="text-sm font-semibold text-ink-50">
-              What you just watched
-            </h2>
+            <h2 className="text-sm font-semibold text-ink-50">What you just watched</h2>
             <p className="mt-2 text-xs leading-relaxed text-ink-400">
-              A request entered one endpoint. A policy chose a model and recorded
-              why, including the candidates it rejected. The chosen provider
-              stalled, the failure was classified as a timeout, the retry policy
-              for that class was applied, and when the primary target kept
-              failing the request moved to a different model and succeeded. The
-              caller received a normal response and a correlation id. Everything
-              else was recorded for whoever has to explain it later.
+              A request entered one endpoint. A policy chose a model and recorded why,
+              including the candidates it rejected. The chosen provider stalled, the
+              failure was classified as a timeout, the retry policy for that class was
+              applied, and when the primary target kept failing the request moved to a
+              different model and succeeded. The caller received a normal response and a
+              correlation id. Everything else was recorded for whoever has to explain it
+              later.
             </p>
             <p className="mt-3 text-[11px] text-ink-600">
-              OmniRouter AI — a portfolio project by Arslan Vuzmal Lone. The
-              models in this demonstration are fictional and run in-process; no
-              request leaves this deployment.
+              OmniRouter AI — a portfolio project by Arslan Vuzmal Lone. The models in
+              this demonstration are fictional and run in-process; no request leaves this
+              deployment.
             </p>
           </Panel>
         </div>

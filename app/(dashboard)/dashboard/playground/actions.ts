@@ -46,10 +46,7 @@ const STRUCTURED_SCHEMA = {
   required: ['summary', 'sentiment', 'priority'],
 } as const;
 
-function toResult(
-  result: RunCompletionResult,
-  structured: boolean,
-): PlaygroundResult {
+function toResult(result: RunCompletionResult, structured: boolean): PlaygroundResult {
   let structuredValid: boolean | null = null;
 
   if (structured && result.content) {
@@ -85,9 +82,7 @@ function toResult(
   };
 }
 
-export async function runPlaygroundAction(
-  input: unknown,
-): Promise<PlaygroundResult> {
+export async function runPlaygroundAction(input: unknown): Promise<PlaygroundResult> {
   const parsed = playgroundSchema.safeParse(input);
 
   if (!parsed.success) {
@@ -138,8 +133,7 @@ export async function runPlaygroundAction(
   }
 
   const behaviour = simulationToBehaviour(parsed.data.simulate) as
-    | DemoBehaviour
-    | undefined;
+    DemoBehaviour | undefined;
 
   const result = await runCompletion({
     workspaceId: context.workspaceId,

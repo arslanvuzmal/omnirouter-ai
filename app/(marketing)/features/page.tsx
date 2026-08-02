@@ -54,9 +54,9 @@ export default function FeaturesPage() {
           What the platform actually does
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-400">
-          Every capability below is implemented and exercised by the seeded
-          demonstration. Where something is deliberately out of scope, it is
-          listed in the roadmap rather than implied here.
+          Every capability below is implemented and exercised by the seeded demonstration.
+          Where something is deliberately out of scope, it is listed in the roadmap rather
+          than implied here.
         </p>
       </header>
 
@@ -64,9 +64,7 @@ export default function FeaturesPage() {
         {MODULES.map((module) => (
           <Panel key={module.title} className="p-5">
             <h2 className="text-sm font-semibold text-ink-50">{module.title}</h2>
-            <p className="mt-2 text-xs leading-relaxed text-ink-400">
-              {module.body}
-            </p>
+            <p className="mt-2 text-xs leading-relaxed text-ink-400">{module.body}</p>
           </Panel>
         ))}
       </section>
@@ -76,9 +74,9 @@ export default function FeaturesPage() {
           Eight selection strategies
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
-          Each one produces a stored explanation naming every candidate
-          considered and rejected. None of them claims to identify an objectively
-          best model — each expresses a configured preference.
+          Each one produces a stored explanation naming every candidate considered and
+          rejected. None of them claims to identify an objectively best model — each
+          expresses a configured preference.
         </p>
 
         <div className="mt-6 space-y-2.5">
@@ -100,9 +98,9 @@ export default function FeaturesPage() {
           Failure is classified before it is retried
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
-          Retrying an authentication failure wastes quota and can lock an
-          account. Retrying a validation error can never succeed. Each category
-          carries its own policy.
+          Retrying an authentication failure wastes quota and can lock an account.
+          Retrying a validation error can never succeed. Each category carries its own
+          policy.
         </p>
 
         <Panel className="mt-6">

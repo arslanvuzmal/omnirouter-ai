@@ -9,14 +9,38 @@ export const metadata: Metadata = {
 };
 
 const LIFECYCLE = [
-  ['Parse and bound', 'Body size is capped before parsing; the payload is validated against a schema with explicit limits on message count and total length.'],
-  ['Authenticate', 'The presented key is hashed and matched against the stored hash. Workspace, application and environment come from the key, never from the body.'],
-  ['Check scope and expiry', 'A revoked or expired key is rejected before any work is done.'],
-  ['Evaluate quotas', 'Consumption for the current window is counted and compared to the configured limits. A rejected request never reaches a provider.'],
-  ['Select a route', 'The policy filters candidates on capability, context and cost, then ranks them by its strategy. The full decision — including rejections — is captured.'],
-  ['Execute', 'The ranked chain is walked. Each failure is classified, and that classification decides whether to retry, fall back, or stop.'],
-  ['Normalise', 'The provider response is mapped into the platform envelope so application code never sees provider-specific shapes.'],
-  ['Record', 'Request, attempts, route explanation, trace stages and daily usage are persisted. A correlation id is returned to the caller.'],
+  [
+    'Parse and bound',
+    'Body size is capped before parsing; the payload is validated against a schema with explicit limits on message count and total length.',
+  ],
+  [
+    'Authenticate',
+    'The presented key is hashed and matched against the stored hash. Workspace, application and environment come from the key, never from the body.',
+  ],
+  [
+    'Check scope and expiry',
+    'A revoked or expired key is rejected before any work is done.',
+  ],
+  [
+    'Evaluate quotas',
+    'Consumption for the current window is counted and compared to the configured limits. A rejected request never reaches a provider.',
+  ],
+  [
+    'Select a route',
+    'The policy filters candidates on capability, context and cost, then ranks them by its strategy. The full decision — including rejections — is captured.',
+  ],
+  [
+    'Execute',
+    'The ranked chain is walked. Each failure is classified, and that classification decides whether to retry, fall back, or stop.',
+  ],
+  [
+    'Normalise',
+    'The provider response is mapped into the platform envelope so application code never sees provider-specific shapes.',
+  ],
+  [
+    'Record',
+    'Request, attempts, route explanation, trace stages and daily usage are persisted. A correlation id is returned to the caller.',
+  ],
 ];
 
 const DECISIONS = [
@@ -51,8 +75,8 @@ export default function ArchitecturePage() {
           How a request flows
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-400">
-          One endpoint, one execution path, and a stored account of every
-          decision made along the way.
+          One endpoint, one execution path, and a stored account of every decision made
+          along the way.
         </p>
       </header>
 
@@ -71,9 +95,7 @@ export default function ArchitecturePage() {
                 </span>
                 <div className="min-w-0">
                   <h3 className="text-xs font-semibold text-ink-50">{title}</h3>
-                  <p className="mt-1 text-[11px] leading-relaxed text-ink-400">
-                    {body}
-                  </p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-ink-400">{body}</p>
                 </div>
               </li>
             ))}
@@ -82,9 +104,7 @@ export default function ArchitecturePage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="text-xl font-semibold tracking-tight text-ink-50">
-          Technology
-        </h2>
+        <h2 className="text-xl font-semibold tracking-tight text-ink-50">Technology</h2>
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           <Panel className="p-5">
             <h3 className="text-sm font-semibold text-ink-50">Application</h3>
@@ -116,9 +136,7 @@ export default function ArchitecturePage() {
         <div className="mt-5 space-y-3">
           {DECISIONS.map((decision) => (
             <Panel key={decision.title} className="p-5">
-              <h3 className="text-sm font-semibold text-ink-50">
-                {decision.title}
-              </h3>
+              <h3 className="text-sm font-semibold text-ink-50">{decision.title}</h3>
               <p className="mt-1.5 text-xs leading-relaxed text-ink-400">
                 {decision.body}
               </p>

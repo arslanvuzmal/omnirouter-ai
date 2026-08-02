@@ -39,8 +39,7 @@ export const RETRY_POLICIES: Record<ErrorCategory, RetryPolicy> = {
     allowFallback: true,
     maxRetries: 0,
     backoffBaseMs: 0,
-    rationale:
-      'The credential lacks access to this model. Retrying cannot grant it.',
+    rationale: 'The credential lacks access to this model. Retrying cannot grant it.',
   },
   RATE_LIMIT: {
     retrySameTarget: true,

@@ -36,15 +36,14 @@ export default async function AnalyticsPage() {
   const { workspaceId, membership } = await requireWorkspace();
   const filters = { workspaceId, days: 30 };
 
-  const [metrics, series, models, providers, applications, errors] =
-    await Promise.all([
-      getOverviewMetrics(filters),
-      getDailySeries(filters),
-      getModelDistribution(filters),
-      getProviderDistribution(filters),
-      getApplicationDistribution(filters),
-      getErrorGroups(filters),
-    ]);
+  const [metrics, series, models, providers, applications, errors] = await Promise.all([
+    getOverviewMetrics(filters),
+    getDailySeries(filters),
+    getModelDistribution(filters),
+    getProviderDistribution(filters),
+    getApplicationDistribution(filters),
+    getErrorGroups(filters),
+  ]);
 
   return (
     <>
@@ -175,10 +174,7 @@ export default async function AnalyticsPage() {
                 </Panel>
 
                 <Panel>
-                  <PanelHeader
-                    title="Requests by application"
-                    as="h2"
-                  />
+                  <PanelHeader title="Requests by application" as="h2" />
                   <Table
                     caption="Requests by application"
                     head={

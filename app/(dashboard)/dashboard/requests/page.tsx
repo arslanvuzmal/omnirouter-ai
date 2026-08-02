@@ -20,10 +20,7 @@ import {
 import { formatCost } from '@/lib/ai/pricing';
 import { requireWorkspace } from '@/lib/auth/guard';
 import { prisma } from '@/lib/database/client';
-import type {
-  ErrorCategory,
-  RequestStatus,
-} from '@/lib/database/generated/enums';
+import type { ErrorCategory, RequestStatus } from '@/lib/database/generated/enums';
 import { formatLatency, formatRelative } from '@/lib/utils';
 
 import { RequestFilters } from './filters';
@@ -60,7 +57,9 @@ export default async function RequestsPage({
       : {}),
     ...(category ? { errorCategory: category as ErrorCategory } : {}),
     ...(applicationId ? { applicationId } : {}),
-    ...(environment ? { environment: { type: environment as 'DEVELOPMENT' | 'PRODUCTION' } } : {}),
+    ...(environment
+      ? { environment: { type: environment as 'DEVELOPMENT' | 'PRODUCTION' } }
+      : {}),
     ...(fallbackOnly ? { fallbackUsed: true } : {}),
   };
 
@@ -165,12 +164,8 @@ export default async function RequestsPage({
                       </span>
                     </Link>
                   </Td>
-                  <Td className="font-mono text-xs">
-                    {request.resolvedModel ?? '—'}
-                  </Td>
-                  <Td className="text-xs text-ink-400">
-                    {request.policy?.name ?? '—'}
-                  </Td>
+                  <Td className="font-mono text-xs">{request.resolvedModel ?? '—'}</Td>
+                  <Td className="text-xs text-ink-400">{request.policy?.name ?? '—'}</Td>
                   <Td className="text-right">
                     {request.attemptCount > 1 ? (
                       <Badge tone="warning">{request.attemptCount}</Badge>

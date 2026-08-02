@@ -41,8 +41,7 @@ export const DEMO_SCENARIOS: ScenarioDefinition[] = [
     applicationSlug: 'support-copilot',
     environment: 'PRODUCTION',
     policyName: 'Balanced production',
-    prompt:
-      'Summarise this support thread and suggest the next action for the agent.',
+    prompt: 'Summarise this support thread and suggest the next action for the agent.',
     systemPrompt: 'You are a concise support operations assistant.',
     expect: 'success',
     sortOrder: 1,
@@ -169,8 +168,7 @@ export const DEMO_SCENARIOS: ScenarioDefinition[] = [
   {
     key: 'malformed-response',
     title: 'Malformed provider response',
-    description:
-      'A response that fails validation is retried once, then falls back.',
+    description: 'A response that fails validation is retried once, then falls back.',
     applicationSlug: 'bulk-classifier',
     environment: 'DEVELOPMENT',
     policyName: 'Structured extraction',
@@ -207,8 +205,7 @@ export const DEMO_SCENARIOS: ScenarioDefinition[] = [
   {
     key: 'comparison-a',
     title: 'Comparison session, configuration A',
-    description:
-      'One half of a side-by-side comparison run against the same prompt.',
+    description: 'One half of a side-by-side comparison run against the same prompt.',
     applicationSlug: 'support-copilot',
     environment: 'DEVELOPMENT',
     policyName: 'Fastest response',
@@ -219,8 +216,7 @@ export const DEMO_SCENARIOS: ScenarioDefinition[] = [
   {
     key: 'comparison-b',
     title: 'Comparison session, configuration B',
-    description:
-      'The other half of the comparison, routed by a different policy.',
+    description: 'The other half of the comparison, routed by a different policy.',
     applicationSlug: 'support-copilot',
     environment: 'DEVELOPMENT',
     policyName: 'Balanced production',

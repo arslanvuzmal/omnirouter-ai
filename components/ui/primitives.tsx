@@ -124,12 +124,7 @@ export function Button({
 /* -------------------------------------------------------------------------- */
 
 export type BadgeTone =
-  | 'neutral'
-  | 'primary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'danger';
+  'neutral' | 'primary' | 'accent' | 'success' | 'warning' | 'danger';
 
 const BADGE_TONES: Record<BadgeTone, string> = {
   neutral: 'bg-base-700 text-ink-200 border-base-600',
@@ -191,12 +186,7 @@ export function Stat({
       <dt className="text-[11px] font-medium tracking-wide text-ink-400 uppercase">
         {label}
       </dt>
-      <dd
-        className={cn(
-          'mt-1.5 text-2xl font-semibold tabular-nums',
-          valueTone[tone],
-        )}
-      >
+      <dd className={cn('mt-1.5 text-2xl font-semibold tabular-nums', valueTone[tone])}>
         {value}
       </dd>
       {hint ? <p className="mt-1 text-[11px] text-ink-600">{hint}</p> : null}
@@ -226,10 +216,7 @@ export function Field({
 
   return (
     <div className="space-y-1.5">
-      <label
-        htmlFor={htmlFor}
-        className="block text-xs font-medium text-ink-200"
-      >
+      <label htmlFor={htmlFor} className="block text-xs font-medium text-ink-200">
         {label}
       </label>
       {children}
@@ -256,10 +243,7 @@ export function Input({ className, ...props }: ComponentPropsWithoutRef<'input'>
   return <input className={cn(CONTROL_CLASS, className)} {...props} />;
 }
 
-export function Textarea({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<'textarea'>) {
+export function Textarea({ className, ...props }: ComponentPropsWithoutRef<'textarea'>) {
   return (
     <textarea
       className={cn(CONTROL_CLASS, 'resize-y font-mono text-xs', className)}
@@ -307,11 +291,7 @@ export function Table({
   );
 }
 
-export function Th({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<'th'>) {
+export function Th({ className, children, ...props }: ComponentPropsWithoutRef<'th'>) {
   return (
     <th
       scope="col"
@@ -326,11 +306,7 @@ export function Th({
   );
 }
 
-export function Td({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<'td'>) {
+export function Td({ className, children, ...props }: ComponentPropsWithoutRef<'td'>) {
   return (
     <td className={cn('px-3 py-2.5 align-middle text-ink-200', className)} {...props}>
       {children}
@@ -380,10 +356,7 @@ export function DemoDataNotice({ className }: { className?: string }) {
         className,
       )}
     >
-      <span
-        aria-hidden="true"
-        className="h-1.5 w-1.5 rounded-full bg-warning-400"
-      />
+      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-warning-400" />
       Demo data
     </span>
   );

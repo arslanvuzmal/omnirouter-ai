@@ -76,9 +76,7 @@ export default async function ProvidersPage() {
                     {connection.credentialCiphertext ? (
                       <Badge tone="success">encrypted</Badge>
                     ) : (
-                      <span className="text-[11px] text-ink-600">
-                        none required
-                      </span>
+                      <span className="text-[11px] text-ink-600">none required</span>
                     )}
                   </Td>
                   <Td>
