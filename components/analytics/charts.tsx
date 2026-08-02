@@ -104,6 +104,7 @@ export function RequestVolumeChart({ data }: { data: DailyPoint[] }) {
           <Tooltip contentStyle={TOOLTIP_STYLE} labelFormatter={shortDay} />
           <Legend wrapperStyle={{ fontSize: '11px', color: COLOURS.text }} />
           <Area
+            isAnimationActive={false}
             type="monotone"
             dataKey="succeeded"
             name="Succeeded"
@@ -113,6 +114,7 @@ export function RequestVolumeChart({ data }: { data: DailyPoint[] }) {
             stackId="1"
           />
           <Area
+            isAnimationActive={false}
             type="monotone"
             dataKey="failed"
             name="Failed"
@@ -151,6 +153,7 @@ export function FallbackTrendChart({ data }: { data: DailyPoint[] }) {
           />
           <Tooltip contentStyle={TOOLTIP_STYLE} labelFormatter={shortDay} />
           <Line
+            isAnimationActive={false}
             type="monotone"
             dataKey="fallbacks"
             name="Fallbacks"
@@ -202,6 +205,7 @@ export function CostTrendChart({ data }: { data: DailyPoint[] }) {
             ]}
           />
           <Area
+            isAnimationActive={false}
             type="monotone"
             dataKey="estimatedCost"
             name="Estimated cost"
@@ -253,7 +257,12 @@ export function DistributionChart({
             formatter={(value: unknown) => [toNumber(value), label]}
             cursor={{ fill: 'rgba(58,69,87,0.25)' }}
           />
-          <Bar dataKey="requests" name={label} radius={[0, 4, 4, 0]}>
+          <Bar
+            dataKey="requests"
+            name={label}
+            radius={[0, 4, 4, 0]}
+            isAnimationActive={false}
+          >
             {data.map((entry, index) => (
               <Cell
                 key={entry.label}
